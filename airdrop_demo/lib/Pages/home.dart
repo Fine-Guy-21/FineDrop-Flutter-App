@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/user.dart';
 // import 'package:airdrop_demo/widgets/circleButton.dart';
 import 'package:airdrop_demo/widgets/energyBoost.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -39,10 +41,18 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.blue[900]),
-              child: Text(
+              child: AnimatedTextKit(
+          onTap: () => {},
+          animatedTexts: [
+              TyperAnimatedText(
                 'Hello, ${_user.userName}',
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-              ),
+                textStyle: const TextStyle(fontSize: 20, color: Colors.white),
+                textAlign: TextAlign.start,
+                speed:const Duration(milliseconds: 100),
+              )
+          ],
+          totalRepeatCount:Duration.microsecondsPerDay,
+        ),
             ),
           ),
 
