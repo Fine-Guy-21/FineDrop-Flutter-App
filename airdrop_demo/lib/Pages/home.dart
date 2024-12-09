@@ -1,9 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/user.dart';
 // import 'package:airdrop_demo/widgets/circleButton.dart';
 import 'package:airdrop_demo/widgets/energyBoost.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,7 +13,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  UserProfile _user = UserProfile()..userName = 'FineGuy';
+     late UserProfile _user = UserProfile()
+      ..userName = 'FineGuy';  
+
+   
 
   void _toggleButton() {
     setState(() {
@@ -23,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height - 100;
@@ -42,17 +46,18 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.blue[900]),
               child: AnimatedTextKit(
-          onTap: () => {},
-          animatedTexts: [
-              TyperAnimatedText(
-                'Hello, ${_user.userName}',
-                textStyle: const TextStyle(fontSize: 20, color: Colors.white),
-                textAlign: TextAlign.start,
-                speed:const Duration(milliseconds: 100),
-              )
-          ],
-          totalRepeatCount:Duration.microsecondsPerDay,
-        ),
+                onTap: () => {},
+                animatedTexts: [
+                  TyperAnimatedText(
+                    'Hello, ${_user.userName}',
+                    textStyle:
+                        const TextStyle(fontSize: 20, color: Colors.white),
+                    textAlign: TextAlign.start,
+                    speed: const Duration(milliseconds: 100),
+                  )
+                ],
+                totalRepeatCount: Duration.microsecondsPerDay,
+              ),
             ),
           ),
 
@@ -72,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     width: screenWidth * (30 / 100),
-                    height: 50.0,
+                    height: screenHeight*0.09,
                     decoration: BoxDecoration(
                       color: Colors.blue[600],
                       borderRadius: BorderRadius.circular(15.0),
@@ -80,14 +85,14 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       "Points Per Tap \n ${_user.pointPerTap}",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.04,
                       ),
                     ),
                   ),
                   Container(
                     width: screenWidth * (30 / 100),
-                    height: 50.0,
+                    height: screenHeight*0.09,
                     decoration: BoxDecoration(
                       color: Colors.blue[600],
                       borderRadius: BorderRadius.circular(15.0),
@@ -95,14 +100,14 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       "Next level \n ${_user.nextLevel}",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.04,
                       ),
                     ),
                   ),
                   Container(
                     width: screenWidth * (30 / 100),
-                    height: 50.0,
+                    height: screenHeight*0.09,
                     decoration: BoxDecoration(
                       color: Colors.blue[600],
                       borderRadius: BorderRadius.circular(15.0),
@@ -110,8 +115,8 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       "Profit per hour \n ${_user.profitPerHour}",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.04,
                       ),
                     ),
                   ),
@@ -133,29 +138,35 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Current User point
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    const Icon(Icons.monetization_on_outlined,
-                        size: 30, color: Colors.yellow),
-                    Text(
-                      ' ${_user.userPoints}',
-                      style: const TextStyle(fontSize: 24, color: Colors.white),
-                    )
-                  ],
-                ),
+                    // Current User point
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.monetization_on_outlined,
+                            size: 30, color: Colors.yellow),
+                        Text(
+                          ' ${_user.userPoints}',
+                          style: const TextStyle(
+                              fontSize: 24, color: Colors.white),
+                        )
+                      ],
+                    ),
 
-                // User amount Progress Bar
-                Container(
-                  padding: const EdgeInsets.all(6),
-                  width: screenWidth * (70 / 100),
-                  child: LinearProgressIndicator(
-                    value: (_user.userPoints / _user.nextLevel),
-                    backgroundColor: Colors.blue,
-                    color: Colors.white,
-                  ),
+                    // User amount Progress Bar
+                    Container(
+                      padding: const EdgeInsets.all(6),
+                      width: screenWidth * (70 / 100),
+                      child: LinearProgressIndicator(
+                        value: (_user.userPoints / _user.nextLevel),
+                        backgroundColor: Colors.blue,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
 
                 // Tap circle
@@ -171,10 +182,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ), */
 
-                const SizedBox(
-                  height: 20,
-                ),
-
+               
                 // Center(
                 //   child: CircleButton(user: _user),
                 // ),
@@ -184,8 +192,8 @@ class _HomePageState extends State<HomePage> {
                   child: GestureDetector(
                     onTap: _toggleButton,
                     child: Container(
-                      width: 250.0, // Change size as needed
-                      height: 250.0,
+                      width: screenWidth*0.8, // Change size as needed
+                      height: screenWidth*0.8,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.blue, // Change color based on state
@@ -200,15 +208,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 15,
-                ),
-
+                
                 // Energy & Boost ( New Navigation Page required with back button )
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                     Row(
+                    Row(
                       children: [
                         const Icon(
                           Icons.architecture_rounded,
@@ -216,14 +221,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Text(
                           '${_user.mineEnergy}/${_user.maxMineEnergy}',
-                          style:const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         )
                       ],
                     ),
                     Container(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                      padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
                       child: ElevatedButton(
-                          onPressed: () => _openEnergyBoostPage(context: context, fullscreenDialogue: true),
+                          onPressed: () => _openEnergyBoostPage(
+                              context: context, fullscreenDialogue: true),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                           ),
@@ -242,7 +248,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _openEnergyBoostPage({required BuildContext context, bool fullscreenDialogue = false}) {
+  void _openEnergyBoostPage(
+      {required BuildContext context, bool fullscreenDialogue = false}) {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -251,6 +258,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
 }
-

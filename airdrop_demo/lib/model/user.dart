@@ -1,3 +1,4 @@
+import 'dart:async';
 
 class UserProfile {
   
@@ -8,7 +9,8 @@ class UserProfile {
   int profitPerHour = 0;
   int mineEnergy = 3000;
   int maxMineEnergy = 3000;
-
+  bool isactive = false;
+  Timer? timer;
 
  void pointsForNextLevel() {
   if (userPoints >= nextLevel){
@@ -24,5 +26,17 @@ class UserProfile {
     }
   }   
 
+  void startEnergyReplenishment() {
+      if (timer == null || !(timer!.isActive)) {
+          timer =Timer.periodic(const Duration(seconds: 2), (timer) {
+            if (mineEnergy < maxMineEnergy) {            
+              mineEnergy++;
+            }else{
+              timer.cancel();
+            }
+          });    
+      }
+      
+  }
   
 }
