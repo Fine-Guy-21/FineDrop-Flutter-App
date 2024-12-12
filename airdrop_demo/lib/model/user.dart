@@ -3,7 +3,7 @@ import 'dart:async';
 class UserProfile {
   
   String? userName;
-  int pointPerTap = 1;
+  int pointPerTap = 100;
   int userPoints = 21;
   int nextLevel = 1000;
   int profitPerHour = 0;

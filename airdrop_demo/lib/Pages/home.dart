@@ -229,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
                       child: ElevatedButton(
                           onPressed: () => _openEnergyBoostPage(
-                              context: context, fullscreenDialogue: true),
+                              context: context, fullscreenDialogue: true, user: _user),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                           ),
@@ -249,12 +249,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _openEnergyBoostPage(
-      {required BuildContext context, bool fullscreenDialogue = false}) {
+
+      {required BuildContext context, bool fullscreenDialogue = false, required UserProfile user}) {
     Navigator.push(
       context,
       MaterialPageRoute(
         fullscreenDialog: fullscreenDialogue,
-        builder: (context) => const EnergyBoost(),
+        builder: (context) =>EnergyBoost(user: user),
       ),
     );
   }
