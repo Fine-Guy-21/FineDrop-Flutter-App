@@ -73,7 +73,7 @@ class EnergyBoost extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         decoration: TextDecoration.underline,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
 
@@ -83,12 +83,20 @@ class EnergyBoost extends StatelessWidget {
 
                     Container(
                       margin: const EdgeInsets.all(0),
+                      width: screenWidth * 0.88,
                       decoration: BoxDecoration(
                         color: Colors.blue[300],
-                        border: Border.all(
-                            color: Colors.blue, width: 2), 
-                        borderRadius: BorderRadius.circular(
-                            8), 
+                        border: Border.all(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Colors.black.withOpacity(0.5), // Shadow color
+                            spreadRadius: 4, // Spread radius
+                            blurRadius: 5, // Blur radius
+                            offset: Offset(2, 3), // Offset in x and y direction
+                          ),
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,27 +115,159 @@ class EnergyBoost extends StatelessWidget {
                                   'assets/ai-generated-8618574_1280.png',
                                 ),
                               ),
-                              const SizedBox(width: 10,),
+                              const SizedBox(
+                                width: 10,
+                              ),
                               const Column(
                                 children: [
                                   Text('Full Energy',
                                       style: TextStyle(
-                                          fontSize: 14, color: Colors.white)),
+                                          fontSize: 14, color: Colors.black)),
                                   Text(
                                     '6/6 Available',
                                     style: TextStyle(
-                                        fontSize: 12, color: Colors.white),
+                                        fontSize: 10, color: Colors.black),
                                   ),
                                 ],
                               ),
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: null, 
-                              style:ButtonStyle(
-                                backgroundColor:MaterialStateProperty.all(Colors.orange),
-                                foregroundColor: MaterialStateProperty.all(Colors.blue)
-                              ), 
+                              onPressed: null,
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      WidgetStateProperty.all(Colors.amber),
+                                  foregroundColor:
+                                      WidgetStateProperty.all(Colors.blue)),
+                              child: const Text('Purchase')),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 40,
+                    ),
+
+                    const Text(
+                      'Boosts',
+                      style: TextStyle(
+                        fontSize: 20,
+                        decoration: TextDecoration.underline,
+                        color: Colors.black,
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Container(
+                      margin: const EdgeInsets.all(0),
+                      width: screenWidth * 0.9,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[300],
+                        border: Border.all(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(120),
+                                    color: Colors.blue[900]),
+                                child: Image.asset(
+                                  'assets/ai-generated-8618574_1280.png',
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                children: [
+                                  const Text('Multi Tap',
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.black)),
+                                  Text(
+                                    '${user.pointPerTap}  1000\$',
+                                    style: const TextStyle(
+                                        fontSize: 10, color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          ElevatedButton(
+                              onPressed: null,
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      WidgetStateProperty.all(Colors.amber),
+                                  foregroundColor:
+                                      WidgetStateProperty.all(Colors.blue)),
+                              child: const Text('Purchase')),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 15,
+                    ),
+
+                    Container(
+                      margin: const EdgeInsets.all(0),
+                      width: screenWidth * 0.9,
+                      decoration: BoxDecoration(
+                        color: Colors.blue[300],
+                        border: Border.all(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(120),
+                                    color: Colors.blue[900]),
+                                child: Image.asset(
+                                  'assets/ai-generated-8618574_1280.png',
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Column(
+                                children: [
+                                  const Text('Energy Limit',
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.black)),
+                                  Text(
+                                    '${user.maxMineEnergy}  1000\$',
+                                    style: const TextStyle(
+                                        fontSize: 10, color: Colors.black),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          ElevatedButton(
+                              onPressed: null,
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      WidgetStateProperty.all(Colors.amber),
+                                  foregroundColor:
+                                      WidgetStateProperty.all(Colors.blue)),
                               child: const Text('Purchase')),
                         ],
                       ),
