@@ -1,8 +1,7 @@
-
+import 'package:airdrop_demo/designs/color.dart';
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/user.dart';
-// import 'package:airdrop_demo/widgets/circleButton.dart';
-import 'package:airdrop_demo/widgets/energyBoost.dart';
+import 'package:airdrop_demo/widgets/boosts.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,12 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-     late final UserProfile _user = UserProfile()
-      ..userName = 'FineGuy';  
+  late final UserProfile _user = UserProfile()..userName = 'FineGuy';
 
-   
-
-  void _toggleButton() {
+  void _onButtonTap() {
     setState(() {
       _user.userPoints += _user.pointPerTap;
       _user.depleteEnergy();
@@ -27,7 +23,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height - 100;
@@ -45,14 +40,17 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.blue[900]),
+                  color: AppColors.surfaceColor,
+                  border: Border.all(color: AppColors.primaryColor, width: 1)),
               child: AnimatedTextKit(
                 onTap: () => {},
                 animatedTexts: [
                   TyperAnimatedText(
                     'Hello, ${_user.userName}',
-                    textStyle:
-                        const TextStyle(fontSize: 20, color: Colors.white),
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: AppColors.textSecondary,
+                    ),
                     textAlign: TextAlign.start,
                     speed: const Duration(milliseconds: 100),
                   )
@@ -63,6 +61,7 @@ class _HomePageState extends State<HomePage> {
           ),
 
           const SizedBox(height: 5),
+
           // Statistics Bar
           Center(
             child: Container(
@@ -71,17 +70,21 @@ class _HomePageState extends State<HomePage> {
               width: screenWidth,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.blue[900],
+                // color: AppColors.secondaryColor,
+                border: Border.all(color: AppColors.primaryColor, width: 1),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  // ppt
                   Container(
                     width: screenWidth * (30 / 100),
-                    height: screenHeight*0.09,
+                    height: screenHeight * 0.09,
                     decoration: BoxDecoration(
-                      color: Colors.blue[600],
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: AppColors.surfaceColor,
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 1),
                     ),
                     child: Text(
                       "Points Per Tap \n ${_user.pointPerTap}",
@@ -91,12 +94,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+
+                  // nl
                   Container(
                     width: screenWidth * (30 / 100),
-                    height: screenHeight*0.09,
+                    height: screenHeight * 0.09,
                     decoration: BoxDecoration(
-                      color: Colors.blue[600],
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: AppColors.surfaceColor,
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 1),
                     ),
                     child: Text(
                       "Next level \n ${_user.nextLevel}",
@@ -106,12 +113,16 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
+
+                  // pph
                   Container(
                     width: screenWidth * (30 / 100),
-                    height: screenHeight*0.09,
+                    height: screenHeight * 0.09,
                     decoration: BoxDecoration(
-                      color: Colors.blue[600],
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: AppColors.surfaceColor,
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 1),
                     ),
                     child: Text(
                       "Profit per hour \n ${_user.profitPerHour}",
@@ -135,12 +146,14 @@ class _HomePageState extends State<HomePage> {
             width: screenWidth,
             height: screenHeight * (70 / 100),
             decoration: BoxDecoration(
-              color: Colors.blue[800],
+              color: AppColors.secondaryColor,
               borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: AppColors.primaryColor, width: 1),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // User balance & progress bar
                 Column(
                   children: [
                     // Current User point
@@ -152,21 +165,23 @@ class _HomePageState extends State<HomePage> {
                         Text(
                           ' ${_user.userPoints}',
                           style: const TextStyle(
-                              fontSize: 24, color: Colors.white),
+                              fontSize: 25, color: Colors.white),
                         )
                       ],
                     ),
 
                     // User amount Progress Bar
-                    Container(
-                      padding: const EdgeInsets.all(6),
-                      width: screenWidth * (70 / 100),
-                      child: LinearProgressIndicator(
-                        value: (_user.userPoints / _user.nextLevel),
-                        backgroundColor: Colors.blue,
-                        color: Colors.white,
+                    SizedBox(
+                      width: screenWidth * (75 / 100),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: LinearProgressIndicator(
+                          value: (_user.userPoints / _user.nextLevel),
+                          backgroundColor: AppColors.surfaceColor,
+                          color: AppColors.primaryColor,
+                        ),
                       ),
-                    ),
+                    )
                   ],
                 ),
 
@@ -182,8 +197,6 @@ class _HomePageState extends State<HomePage> {
                       'assets/ai-generated-8618574_1280.png',
                     ),
                   ), */
-
-               
                 // Center(
                 //   child: CircleButton(user: _user),
                 // ),
@@ -191,13 +204,26 @@ class _HomePageState extends State<HomePage> {
                 // Tappable area ( Gesture Detector)
                 Center(
                   child: GestureDetector(
-                    onTap: _toggleButton,
+                    onTap: _onButtonTap,
                     child: Container(
-                      width: screenWidth*0.8, // Change size as needed
-                      height: screenWidth*0.8,
-                      decoration: const BoxDecoration(
+                      width: screenWidth * 0.8, // Change size as needed
+                      height: screenHeight * 0.45,
+                      decoration:const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.blue, // Change color based on state
+                        // color: AppColors.surfaceColor,
+                        gradient: RadialGradient(
+                          colors:  [
+                            AppColors.surfaceColor, // Inner color
+                            AppColors.secondaryColor, // Outer color
+                          ],
+                          stops: [0.7, 1.0], // Control the gradient transition
+                        ),
+                        boxShadow:  [
+                          BoxShadow(
+                            color: AppColors.secondaryColor,
+                            blurRadius: 30,
+                          ),
+                        ],
                       ),
                       child: ClipOval(
                         child: Image.asset(
@@ -209,7 +235,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
 
-                
                 // Energy & Boost ( New Navigation Page required with back button )
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -218,31 +243,33 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const Icon(
                           Icons.architecture_rounded,
-                          color: Colors.white,
+                          color: AppColors.textSecondary,size: 30,
                         ),
                         StreamBuilder(
-                          stream: Stream.periodic(const Duration(milliseconds: 1200), (t)=>t),
-                          builder: (ctx, v){
-                            print('Building...');
-                          return  Text(
-                          '${_user.mineEnergy}/${_user.maxMineEnergy}',
-                          style: const TextStyle(color: Colors.white),
-                        );
-                        },)
-                       
+                          stream: Stream.periodic(
+                              const Duration(milliseconds: 1200), (t) => t),
+                          builder: (ctx, v) {
+                            return Text(
+                              '${_user.mineEnergy}/${_user.maxMineEnergy}',
+                              style: const TextStyle(fontSize:17,color: Colors.white),
+                            );
+                          },
+                        )
                       ],
                     ),
                     Container(
                       padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
                       child: ElevatedButton(
                           onPressed: () => _openEnergyBoostPage(
-                              context: context, fullscreenDialogue: true, user: _user),
+                              context: context,
+                              fullscreenDialogue: true,
+                              user: _user),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
+                            backgroundColor: AppColors.primaryColor,
                           ),
                           child: const Text(
                             'Boost',
-                            style: TextStyle(fontSize: 12, color: Colors.white),
+                            style: TextStyle(fontSize: 15, color: Colors.white),
                           )),
                     )
                   ],
@@ -256,13 +283,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _openEnergyBoostPage(
-
-      {required BuildContext context, bool fullscreenDialogue = false, required UserProfile user}) {
+      {required BuildContext context,
+      bool fullscreenDialogue = false,
+      required UserProfile user}) {
     Navigator.push(
       context,
       MaterialPageRoute(
         fullscreenDialog: fullscreenDialogue,
-        builder: (context) =>EnergyBoost(user: user),
+        builder: (context) => EnergyBoost(user: user),
       ),
     );
   }

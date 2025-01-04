@@ -4,6 +4,7 @@ import 'package:airdrop_demo/Pages/cards.dart';
 import 'package:airdrop_demo/Pages/invite.dart';
 import 'package:airdrop_demo/Pages/tasks.dart';
 import 'package:airdrop_demo/Pages/home.dart';
+import 'package:airdrop_demo/designs/color.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +17,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      theme:ThemeData(
+      scaffoldBackgroundColor: AppColors.backgroundColor, 
+      bottomNavigationBarTheme:const BottomNavigationBarThemeData(
+          backgroundColor: AppColors.surfaceColor, 
+          selectedItemColor: AppColors.primaryColor,
+          unselectedItemColor: AppColors.secondaryColor,  
+        ),      
+      ),
+      debugShowCheckedModeBanner: false,      
       title: 'Airdrop Demo',
-      home: SplashScreen(), // Start with the SplashScreen
+      home: const SplashScreen(), // Start with the SplashScreen
     );
   }
 }
@@ -41,11 +50,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToHome() async {
     // Simulate a loading delay (or perform initialization tasks)
-    await Future.delayed(const Duration(seconds: 3)); // Adjust duration if needed
-
+    await Future.delayed(const Duration(seconds: 1)); // Adjust duration if needed
     // Navigate to the main scaffold
     Navigator.pushReplacement(
-      context,
+      // ignore: use_build_context_synchronously
+      context ,
       MaterialPageRoute(builder: (context) => const MySccaffold()),
     );
   }
@@ -57,11 +66,17 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.flutter_dash, size: 100, color: Colors.blue), // Replace with your logo
-            SizedBox(height: 20),
+            Icon(Icons.flutter_dash,
+                size: 100, color: AppColors.primaryColor), // Replace with your logo
+            SizedBox(height: 40),
             CircularProgressIndicator(), // Loading animation
-            SizedBox(height: 10),
-            Text("Loading... Please wait"),
+            SizedBox(height: 20),
+            Text("Loading... Please wait",
+            style: TextStyle(
+              fontSize: 20,
+              color: AppColors.primaryColor
+            ),
+            ),
           ],
         ),
       ),
@@ -69,7 +84,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
-// Your existing MySccaffold setup remains the same
+// https://coolors.co/palette/386641-6a994e-a7c957-f2e8cf-bc4749
+
+//Home Widget loader
 class MySccaffold extends StatefulWidget {
   const MySccaffold({super.key});
 
@@ -105,31 +122,33 @@ class _MySccaffoldState extends State<MySccaffold> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[300],
+      backgroundColor: AppColors.backgroundColor,
       body: _currentPage,
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.blue[900],
+      
+      bottomNavigationBar:BottomNavigationBar(
+        // backgroundColor: AppColors.surfaceColor,
+        fixedColor: AppColors.primaryColor,
         currentIndex: _currentIndex,
-        items: [
+        items: const [
           BottomNavigationBarItem(
-              icon: Icon(
+              icon:Icon(
                 Icons.home_outlined,
-                color: Colors.blue[700],
+                color: AppColors.primaryColor,
               ),
               label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.task_outlined, color: Colors.blue[700]),
+              icon: Icon(Icons.task_outlined, color: AppColors.primaryColor),
               label: 'Tasks'),
           BottomNavigationBarItem(
               icon: Icon(Icons.charging_station_outlined,
-                  color: Colors.blue[700]),
+                  color: AppColors.primaryColor),
               label: 'Cards'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.group_add_outlined, color: Colors.blue[700]),
+              icon: Icon(Icons.group_add_outlined, color: AppColors.primaryColor),
               label: 'Invite'),
           BottomNavigationBarItem(
               icon:
-                  Icon(Icons.monetization_on_outlined, color: Colors.blue[700]),
+                  Icon(Icons.monetization_on_outlined, color: AppColors.primaryColor),
               label: 'Airdrop'),
         ],
         onTap: (selectedIndex) => _changePages(selectedIndex),

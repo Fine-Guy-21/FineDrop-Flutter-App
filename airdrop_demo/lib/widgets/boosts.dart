@@ -1,3 +1,4 @@
+import 'package:airdrop_demo/designs/color.dart';
 import 'package:flutter/material.dart';
 
 import '../model/user.dart';
@@ -12,10 +13,14 @@ class EnergyBoost extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width - 30;
 
     return Scaffold(
-      backgroundColor: Colors.blue[300],
+      backgroundColor: AppColors.backgroundColor,
       appBar: AppBar(
-        title: const Text("Welcome to boost & shops "),
-        backgroundColor: Colors.blue[800],
+        title: const Text(
+          "Welcome to boost & shops ",
+          style: TextStyle(color: AppColors.textSecondary),
+        ),
+        backgroundColor: AppColors.primaryColor,
+        iconTheme: const IconThemeData(color: AppColors.textSecondary),
       ),
       body: SafeArea(
           child: Padding(
@@ -25,7 +30,7 @@ class EnergyBoost extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.blue[800],
+                  color: AppColors.secondaryColor,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +38,7 @@ class EnergyBoost extends StatelessWidget {
                     const SizedBox(
                       height: 40,
                     ),
-                    // User point & progress
+                    // User amount
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -50,17 +55,6 @@ class EnergyBoost extends StatelessWidget {
                             )
                           ],
                         ),
-
-                        // User amount Progress Bar
-                        Container(
-                          padding: const EdgeInsets.all(6),
-                          width: screenWidth * (70 / 100),
-                          child: LinearProgressIndicator(
-                            value: (user.userPoints / user.nextLevel),
-                            backgroundColor: Colors.blue,
-                            color: Colors.white,
-                          ),
-                        ),
                       ],
                     ),
 
@@ -72,8 +66,7 @@ class EnergyBoost extends StatelessWidget {
                       'Free Daily Boost',
                       style: TextStyle(
                         fontSize: 20,
-                        decoration: TextDecoration.underline,
-                        color: Colors.black,
+                        color: AppColors.textSecondary,
                       ),
                     ),
 
@@ -83,10 +76,11 @@ class EnergyBoost extends StatelessWidget {
 
                     Container(
                       margin: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(8),
                       width: screenWidth * 0.88,
                       decoration: BoxDecoration(
-                        color: Colors.blue[300],
-                        border: Border.all(color: Colors.blue, width: 2),
+                        color: AppColors.surfaceColor,
+                        border: Border.all(color: AppColors.secondaryColor, width: 1),
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
@@ -94,7 +88,8 @@ class EnergyBoost extends StatelessWidget {
                                 Colors.black.withOpacity(0.5), // Shadow color
                             spreadRadius: 4, // Spread radius
                             blurRadius: 5, // Blur radius
-                            offset: const Offset(2, 3), // Offset in x and y direction
+                            offset: const Offset(
+                                2, 3), // Offset in x and y direction
                           ),
                         ],
                       ),
@@ -152,8 +147,7 @@ class EnergyBoost extends StatelessWidget {
                       'Boosts',
                       style: TextStyle(
                         fontSize: 20,
-                        decoration: TextDecoration.underline,
-                        color: Colors.black,
+                        color: AppColors.textSecondary,
                       ),
                     ),
 
@@ -163,11 +157,22 @@ class EnergyBoost extends StatelessWidget {
 
                     Container(
                       margin: const EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(8),
                       width: screenWidth * 0.9,
                       decoration: BoxDecoration(
-                        color: Colors.blue[300],
-                        border: Border.all(color: Colors.blue, width: 2),
+                        color: AppColors.surfaceColor,
+                        border: Border.all(color: AppColors.secondaryColor, width: 2),
                         borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Colors.black.withOpacity(0.5), // Shadow color
+                            spreadRadius: 4, // Spread radius
+                            blurRadius: 5, // Blur radius
+                            offset: const Offset(
+                                2, 3), // Offset in x and y direction
+                          ),
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -181,7 +186,8 @@ class EnergyBoost extends StatelessWidget {
                                 width: 35,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(120),
-                                    color: Colors.blue[900]),
+                                    color: Colors.blue[900]
+                                    ),
                                 child: Image.asset(
                                   'assets/ai-generated-8618574_1280.png',
                                 ),
@@ -220,12 +226,23 @@ class EnergyBoost extends StatelessWidget {
                     ),
 
                     Container(
-                      margin: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.all(0),                      
+                      padding: const EdgeInsets.all(8),
                       width: screenWidth * 0.9,
                       decoration: BoxDecoration(
-                        color: Colors.blue[300],
-                        border: Border.all(color: Colors.blue, width: 2),
+                        color: AppColors.surfaceColor,
+                        border: Border.all(color: AppColors.secondaryColor, width: 2),
                         borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color:
+                                Colors.black.withOpacity(0.5), // Shadow color
+                            spreadRadius: 4, // Spread radius
+                            blurRadius: 5, // Blur radius
+                            offset: const Offset(
+                                2, 3), // Offset in x and y direction
+                          ),
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
