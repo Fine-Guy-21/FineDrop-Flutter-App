@@ -3,27 +3,73 @@ import 'package:airdrop_demo/Pages/airdrop.dart';
 import 'package:airdrop_demo/Pages/cards.dart';
 import 'package:airdrop_demo/Pages/invite.dart';
 import 'package:airdrop_demo/Pages/tasks.dart';
-
 import 'package:airdrop_demo/Pages/home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Airdrop Demo',
-      home: MySccaffold(),
+      home: SplashScreen(), // Start with the SplashScreen
     );
   }
 }
 
+// SplashScreen Widget
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToHome();
+  }
+
+  void _navigateToHome() async {
+    // Simulate a loading delay (or perform initialization tasks)
+    await Future.delayed(const Duration(seconds: 3)); // Adjust duration if needed
+
+    // Navigate to the main scaffold
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const MySccaffold()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.flutter_dash, size: 100, color: Colors.blue), // Replace with your logo
+            SizedBox(height: 20),
+            CircularProgressIndicator(), // Loading animation
+            SizedBox(height: 10),
+            Text("Loading... Please wait"),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// Your existing MySccaffold setup remains the same
 class MySccaffold extends StatefulWidget {
   const MySccaffold({super.key});
 
@@ -41,9 +87,9 @@ class _MySccaffoldState extends State<MySccaffold> {
     super.initState();
     _listPages
       ..add(const HomePage())
-      ..add(const InvitePage())
       ..add(const TasksPage())
       ..add(const CardsPage())
+      ..add(const InvitePage())
       ..add(const AirdropPage());
 
     _currentPage = const HomePage();
@@ -61,9 +107,7 @@ class _MySccaffoldState extends State<MySccaffold> {
     return Scaffold(
       backgroundColor: Colors.blue[300],
       body: _currentPage,
-      // bottomNavigationBar: ,
       bottomNavigationBar: BottomNavigationBar(
-        // backgroundColor: Colors.blue[900],
         fixedColor: Colors.blue[900],
         currentIndex: _currentIndex,
         items: [
@@ -93,6 +137,7 @@ class _MySccaffoldState extends State<MySccaffold> {
     );
   }
 }
+
 
 
 

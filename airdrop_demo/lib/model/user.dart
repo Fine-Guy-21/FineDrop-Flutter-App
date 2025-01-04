@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+
 class UserProfile {
   
   String? userName;
@@ -10,6 +12,8 @@ class UserProfile {
   int mineEnergy = 3000;
   int maxMineEnergy = 3000;
   bool isactive = false;
+  bool _isReSt = false;
+
   Timer? timer;
 
  void pointsForNextLevel() {
@@ -25,17 +29,29 @@ class UserProfile {
       mineEnergy--;
     }
   }   
-
   void startEnergyReplenishment() {
-      if (timer == null || !(timer!.isActive)) {
-          timer =Timer.periodic(const Duration(seconds: 2), (timer) {
-            if (mineEnergy < maxMineEnergy) {            
-              mineEnergy++;
-            }else{
-              timer.cancel();
-            }
-          });    
-      }
+    debugPrint('clicked');
+    if(_isReSt){
+      return;
+    }
+    _isReSt = true;
+      // if (timer == null || !(timer!.isActive)) {
+      //     timer =Timer.periodic(const Duration(seconds: 2), (timer) {
+      //       if (mineEnergy < maxMineEnergy) {            
+      //         mineEnergy++;
+      //       }else{
+      //         timer.cancel();
+      //       }
+      //     });    
+      // }
+      Stream s = Stream.periodic(const Duration(seconds: 1), (t){
+        if(mineEnergy<maxMineEnergy){
+          mineEnergy++;
+        }
+        debugPrint("Updting");
+        
+      });
+      s.listen((x){});
       
   }
   

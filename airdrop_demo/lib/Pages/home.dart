@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-     late UserProfile _user = UserProfile()
+     late final UserProfile _user = UserProfile()
       ..userName = 'FineGuy';  
 
    
@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
       _user.userPoints += _user.pointPerTap;
       _user.depleteEnergy();
       _user.pointsForNextLevel();
+      _user.startEnergyReplenishment();
     });
   }
 
@@ -219,10 +220,16 @@ class _HomePageState extends State<HomePage> {
                           Icons.architecture_rounded,
                           color: Colors.white,
                         ),
-                        Text(
+                        StreamBuilder(
+                          stream: Stream.periodic(const Duration(milliseconds: 1200), (t)=>t),
+                          builder: (ctx, v){
+                            print('Building...');
+                          return  Text(
                           '${_user.mineEnergy}/${_user.maxMineEnergy}',
                           style: const TextStyle(color: Colors.white),
-                        )
+                        );
+                        },)
+                       
                       ],
                     ),
                     Container(

@@ -94,7 +94,7 @@ class EnergyBoost extends StatelessWidget {
                                 Colors.black.withOpacity(0.5), // Shadow color
                             spreadRadius: 4, // Spread radius
                             blurRadius: 5, // Blur radius
-                            offset: Offset(2, 3), // Offset in x and y direction
+                            offset: const Offset(2, 3), // Offset in x and y direction
                           ),
                         ],
                       ),
