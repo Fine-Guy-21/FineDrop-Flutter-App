@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToHome() async {
     // Simulate a loading delay (or perform initialization tasks)
-    await Future.delayed(const Duration(seconds: 1)); // Adjust duration if needed
+    await Future.delayed(const Duration(seconds: 6)); // Adjust duration if needed
     // Navigate to the main scaffold
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
