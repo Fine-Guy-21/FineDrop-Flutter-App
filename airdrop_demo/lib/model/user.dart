@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 class UserProfile {
-  
+  int? id = 1;
   String? userName;
   int pointPerTap = 100;
   int userPoints = 21;
@@ -13,6 +13,7 @@ class UserProfile {
   int maxMineEnergy = 3000;
   bool isactive = false;
   bool _isReSt = false;
+  List<UserProfile> friends = [];
 
   Timer? timer;
 

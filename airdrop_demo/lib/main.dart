@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:airdrop_demo/Pages/airdrop.dart';
-import 'package:airdrop_demo/Pages/cards.dart';
-import 'package:airdrop_demo/Pages/invite.dart';
-import 'package:airdrop_demo/Pages/tasks.dart';
-import 'package:airdrop_demo/Pages/home.dart';
+import 'package:airdrop_demo/Pages/airdroppage.dart';
+import 'package:airdrop_demo/Pages/cardspage.dart';
+import 'package:airdrop_demo/Pages/invitepage.dart';
+import 'package:airdrop_demo/Pages/taskspage.dart';
+import 'package:airdrop_demo/Pages/homepage.dart';
 import 'package:airdrop_demo/designs/color.dart';
+// import  'Pages/temp.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -108,6 +109,7 @@ class _MySccaffoldState extends State<MySccaffold> {
       ..add(const CardsPage())
       ..add(const InvitePage())
       ..add(const AirdropPage());
+
 
     _currentPage = const HomePage();
   }

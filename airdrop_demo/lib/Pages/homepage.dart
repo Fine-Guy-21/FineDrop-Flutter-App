@@ -1,7 +1,7 @@
 import 'package:airdrop_demo/designs/color.dart';
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/user.dart';
-import 'package:airdrop_demo/widgets/boosts.dart';
+import 'package:airdrop_demo/Pages/boostsPage.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
     final screenWidth = MediaQuery.of(context).size.width - 30;
 
     return SafeArea(
+        child: SingleChildScrollView(
       child: Column(
         children: [
           // as an App Bar
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     speed: const Duration(milliseconds: 100),
                   )
                 ],
-                totalRepeatCount: Duration.microsecondsPerDay,
+                totalRepeatCount: 2,
               ),
             ),
           ),
@@ -160,10 +161,10 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.monetization_on_outlined,
+                        const Icon(Icons.attach_money,
                             size: 30, color: Colors.yellow),
                         Text(
-                          ' ${_user.userPoints}',
+                          '${_user.userPoints}',
                           style: const TextStyle(
                               fontSize: 25, color: Colors.white),
                         )
@@ -185,22 +186,6 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
 
-                // Tap circle
-                /* Container(
-                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                    height: screenHeight * (45 / 100),
-                    width: screenWidth * (75 / 100),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(120),
-                        color: Colors.blue[900]),
-                    child: Image.asset(
-                      'assets/ai-generated-8618574_1280.png',
-                    ),
-                  ), */
-                // Center(
-                //   child: CircleButton(user: _user),
-                // ),
-
                 // Tappable area ( Gesture Detector)
                 Center(
                   child: GestureDetector(
@@ -208,17 +193,17 @@ class _HomePageState extends State<HomePage> {
                     child: Container(
                       width: screenWidth * 0.8, // Change size as needed
                       height: screenHeight * 0.45,
-                      decoration:const BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         // color: AppColors.surfaceColor,
                         gradient: RadialGradient(
-                          colors:  [
+                          colors: [
                             AppColors.surfaceColor, // Inner color
                             AppColors.secondaryColor, // Outer color
                           ],
                           stops: [0.7, 1.0], // Control the gradient transition
                         ),
-                        boxShadow:  [
+                        boxShadow: [
                           BoxShadow(
                             color: AppColors.secondaryColor,
                             blurRadius: 30,
@@ -243,7 +228,8 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const Icon(
                           Icons.architecture_rounded,
-                          color: AppColors.textSecondary,size: 30,
+                          color: AppColors.textSecondary,
+                          size: 30,
                         ),
                         StreamBuilder(
                           stream: Stream.periodic(
@@ -251,7 +237,8 @@ class _HomePageState extends State<HomePage> {
                           builder: (ctx, v) {
                             return Text(
                               '${_user.mineEnergy}/${_user.maxMineEnergy}',
-                              style: const TextStyle(fontSize:17,color: Colors.white),
+                              style: const TextStyle(
+                                  fontSize: 17, color: Colors.white),
                             );
                           },
                         )
@@ -279,7 +266,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
+    ));
   }
 
   void _openEnergyBoostPage(
