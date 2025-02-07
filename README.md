@@ -34,8 +34,8 @@ To get started with the AirDrop Flutter App, follow the instructions below to se
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/yourusername/AirDrop-Flutter-.git
-    cd AirDrop-Flutter-
+    git clone https://github.com/Fine-Guy-21/FineDrop-Flutter-App.git
+    cd FineDrop-Flutter-App-
     ```
 
 2. **Install dependencies**:
