@@ -46,10 +46,10 @@ class EnergyBoost extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.monetization_on_outlined,
+                            const Icon(Icons.attach_money,
                                 size: 30, color: Colors.yellow),
                             Text(
-                              ' ${user.userPoints}',
+                              ' ${user.userPoints.toInt()}',
                               style: const TextStyle(
                                   fontSize: 24, color: Colors.white),
                             )
@@ -74,6 +74,7 @@ class EnergyBoost extends StatelessWidget {
                       height: 10,
                     ),
 
+                    // Full Energy
                     Container(
                       margin: const EdgeInsets.all(0),
                       padding: const EdgeInsets.all(8),
@@ -128,12 +129,12 @@ class EnergyBoost extends StatelessWidget {
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: null,
+                              onPressed: (){},
                               style: ButtonStyle(
                                   backgroundColor:
-                                      WidgetStateProperty.all(Colors.amber),
+                                      WidgetStateProperty.all(AppColors.primaryColor),
                                   foregroundColor:
-                                      WidgetStateProperty.all(Colors.blue)),
+                                      WidgetStateProperty.all(AppColors.surfaceColor)),
                               child: const Text('Purchase')),
                         ],
                       ),
@@ -155,6 +156,7 @@ class EnergyBoost extends StatelessWidget {
                       height: 10,
                     ),
 
+                    // Multi tap
                     Container(
                       margin: const EdgeInsets.all(0),
                       padding: const EdgeInsets.all(8),
@@ -210,12 +212,12 @@ class EnergyBoost extends StatelessWidget {
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: null,
+                              onPressed: (){},
                               style: ButtonStyle(
                                   backgroundColor:
-                                      WidgetStateProperty.all(Colors.amber),
+                                      WidgetStateProperty.all(AppColors.primaryColor),
                                   foregroundColor:
-                                      WidgetStateProperty.all(Colors.blue)),
+                                      WidgetStateProperty.all(AppColors.surfaceColor)),
                               child: const Text('Purchase')),
                         ],
                       ),
@@ -225,6 +227,7 @@ class EnergyBoost extends StatelessWidget {
                       height: 15,
                     ),
 
+                  //Energy Limit
                     Container(
                       margin: const EdgeInsets.all(0),                      
                       padding: const EdgeInsets.all(8),
@@ -279,12 +282,12 @@ class EnergyBoost extends StatelessWidget {
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: null,
+                              onPressed: (){},
                               style: ButtonStyle(
                                   backgroundColor:
-                                      WidgetStateProperty.all(Colors.amber),
+                                      WidgetStateProperty.all(AppColors.primaryColor),
                                   foregroundColor:
-                                      WidgetStateProperty.all(Colors.blue)),
+                                      WidgetStateProperty.all(AppColors.surfaceColor)),
                               child: const Text('Purchase')),
                         ],
                       ),
