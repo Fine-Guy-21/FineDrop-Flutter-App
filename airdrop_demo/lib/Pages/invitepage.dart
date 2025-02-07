@@ -119,18 +119,19 @@ class _InvitePageState extends State<InvitePage> {
                     color: AppColors.textPrimary,
                   ),
                 ),
-              
+
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) => ListTile(
-                      title: Text('Friend $index'),
+                    itemCount: 1,
+                    itemBuilder: (context, index) => const ListTile(
+                      title:  Text('Joey'),
                       subtitle: Text('Joined on 2022-01-01'),
-                      leading: const Icon(Icons.person),
-                      trailing: const Icon(Icons.arrow_forward_ios),
+                      leading: Icon(Icons.person),
+                      trailing: Icon(Icons.arrow_forward_ios),
                     ),
                   ),
                 ),
+
               
               ],
             ))

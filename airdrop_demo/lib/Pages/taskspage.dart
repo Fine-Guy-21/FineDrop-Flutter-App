@@ -32,34 +32,34 @@ class _TasksPageState extends State<TasksPage> {
           children: [
             // Your app bar and other UI elements...
 
-Center(
-            child: Container(
-              height: screenHeight * (9 / 100),
-              width: screenWidth,
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.surfaceColor,
-                  border: Border.all(color: AppColors.primaryColor, width: 1)),
-              child: AnimatedTextKit(
-                onTap: () => {},
-                animatedTexts: [
-                  TyperAnimatedText(
-                    'Hello, ${_user.userName}',
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      color: AppColors.textSecondary,
-                    ),
-                    textAlign: TextAlign.start,
-                    speed: const Duration(milliseconds: 100),
-                  )
-                ],
-                totalRepeatCount: 2,
+            Center(
+              child: Container(
+                height: screenHeight * (9 / 100),
+                width: screenWidth,
+                padding: const EdgeInsets.all(8),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.surfaceColor,
+                    border:
+                        Border.all(color: AppColors.primaryColor, width: 1)),
+                child: AnimatedTextKit(
+                  onTap: () => {},
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      'Hello, ${_user.userName}',
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        color: AppColors.textSecondary,
+                      ),
+                      textAlign: TextAlign.start,
+                      speed: const Duration(milliseconds: 100),
+                    )
+                  ],
+                  totalRepeatCount: 2,
+                ),
               ),
             ),
-          ),
-
 
             // Amount of points
             Container(
@@ -74,9 +74,10 @@ Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.attach_money, size: 30, color: Colors.yellow),
+                  const Icon(Icons.attach_money,
+                      size: 30, color: Colors.yellow),
                   Text(
-                    '${_user.userPoints}',
+                    '${_user.userPoints.toInt()}',
                     style: const TextStyle(fontSize: 25, color: Colors.white),
                   ),
                 ],
@@ -127,7 +128,6 @@ Center(
     );
   }
 }
-
 
 class TaskItem extends StatefulWidget {
   final Task task;

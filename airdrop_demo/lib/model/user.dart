@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 class UserProfile {
   int? id = 1;
   String? userName;
-  int pointPerTap = 100;
-  double userPoints = 1900;
+  int pointPerTap = 1;
+  double userPoints = 4121;
   int nextLevel = 5000;
   double profitPerHour = 0;
   int mineEnergy = 3000;

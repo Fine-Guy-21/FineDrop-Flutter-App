@@ -69,9 +69,9 @@ class _CardsPageState extends State<CardsPage> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.65,
+                        childAspectRatio: 0.63,
                         crossAxisSpacing: 13,
-                        mainAxisSpacing: 16,
+                        mainAxisSpacing: 13,
                       ),
                       itemCount: cards.length,
                       itemBuilder: (context, index) => _buildCard(cards[index]),

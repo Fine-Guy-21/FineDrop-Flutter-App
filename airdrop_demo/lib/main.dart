@@ -5,11 +5,9 @@ import 'package:airdrop_demo/Pages/invitepage.dart';
 import 'package:airdrop_demo/Pages/taskspage.dart';
 import 'package:airdrop_demo/Pages/homepage.dart';
 import 'package:airdrop_demo/designs/color.dart';
-// import  'Pages/temp.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
+  
   runApp(const MyApp());
 }
 
