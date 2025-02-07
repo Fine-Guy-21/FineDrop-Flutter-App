@@ -6,9 +6,9 @@ class UserProfile {
   int? id = 1;
   String? userName;
   int pointPerTap = 100;
-  int userPoints = 21;
-  int nextLevel = 1000;
-  int profitPerHour = 0;
+  double userPoints = 1900;
+  int nextLevel = 5000;
+  double profitPerHour = 0;
   int mineEnergy = 3000;
   int maxMineEnergy = 3000;
   bool isactive = false;

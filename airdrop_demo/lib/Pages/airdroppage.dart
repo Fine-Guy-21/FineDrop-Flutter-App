@@ -52,7 +52,7 @@ class _AirdropPageState extends State<AirdropPage> {
 
             const SizedBox(height: 20),
 
-            // Title
+            // Description
             Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.all(10),
@@ -117,7 +117,7 @@ class _AirdropPageState extends State<AirdropPage> {
               ),
             ),
 
-
+            //Why Us
             Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.all(5),

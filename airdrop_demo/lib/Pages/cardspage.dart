@@ -86,111 +86,130 @@ class _CardsPageState extends State<CardsPage> {
 
   Widget _buildCard(CardModel card) {
     return GestureDetector(
-      onTap: () => {print(card.title)},
-      
+      onTap: () => {
+        setState(() {
+          if (_user.userPoints >= card.price) {
+            _user.userPoints -= card.price;
+            _user.profitPerHour += card.profitPerHour;
+            card.incrementLevel(card.level);
+            card.profitPerHourForNextLevel(card.profitPerHour);
+            card.priceForNextLevel(card.price);
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Not enough points'),
+                backgroundColor: Colors.red, // Optional: Customize the color
+                duration:
+                    Duration(seconds: 2), // Optional: Duration of the SnackBar
+              ),
+            );
+          }
+        })
+      },
       child: Container(
-      width: 160,
-      decoration: BoxDecoration(
-        color: AppColors.secondaryColor,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.primaryColor, width: 5),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: Image.network(
-              card.imageUrl,
-              height: 100,
-              width: double.infinity,
-              fit: BoxFit.cover,
+        width: 160,
+        decoration: BoxDecoration(
+          color: AppColors.secondaryColor,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppColors.primaryColor, width: 5),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16)),
+              child: Image.network(
+                card.imageUrl,
+                height: 100,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  card.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    card.title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 8),
-                 Row(
-                  children: [
-                    const Icon(
-                      Icons.attach_money,
-                      color: Colors.yellow,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '${card.profitPerHour}',
-                      style:const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.attach_money,
+                        color: Colors.yellow,
+                        size: 16,
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child:  Text(
-                        'lvl ${card.level+1}',
-                        style:const TextStyle(
+                      const SizedBox(width: 4),
+                      Text(
+                        '${card.profitPerHour.toInt()}',
+                        style: const TextStyle(
                           color: Colors.white70,
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
-                    ),
-                    const Text(
-                      '|',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    const Row(
-                      children: [
-                        Icon(
-                          Icons.attach_money,
-                          color: Colors.yellow,
-                          size: 16,
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
                         ),
-                        SizedBox(width: 4),
-                        Text(
-                          '200',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Text(
+                          'lvl ${card.level + 1}',
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 12,
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                      ),
+                      const Text(
+                        '|',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.attach_money,
+                            color: Colors.yellow,
+                            size: 16,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${card.price.toInt()}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
     );
   }
 }

@@ -48,6 +48,7 @@ class _InvitePageState extends State<InvitePage> {
             totalRepeatCount: 1,
           ),
         ),
+        
         Container(
           margin: const EdgeInsets.fromLTRB(6, 10, 6, 5),
           padding: const EdgeInsets.all(8.0),
@@ -109,15 +110,28 @@ class _InvitePageState extends State<InvitePage> {
                 width: 1,
               ),
             ),
-            child: const Column(
+            child:  Column(
               children: [
-                Text(
+               const Text(
                   'Invited Friends',
                   style: TextStyle(
                     fontSize: 20,
                     color: AppColors.textPrimary,
                   ),
                 ),
+              
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 5,
+                    itemBuilder: (context, index) => ListTile(
+                      title: Text('Friend $index'),
+                      subtitle: Text('Joined on 2022-01-01'),
+                      leading: const Icon(Icons.person),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                    ),
+                  ),
+                ),
+              
               ],
             ))
       ],

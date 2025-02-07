@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   void _onButtonTap() {
     setState(() {
       _user.userPoints += _user.pointPerTap;
+      // print('Userpoint is ${_user.userPoints}');
       _user.depleteEnergy();
       _user.pointsForNextLevel();
       _user.startEnergyReplenishment();
@@ -126,7 +127,7 @@ class _HomePageState extends State<HomePage> {
                           Border.all(color: AppColors.primaryColor, width: 1),
                     ),
                     child: Text(
-                      "Profit per hour \n ${_user.profitPerHour}",
+                      "Profit per hour \n ${_user.profitPerHour.toInt()}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.04,
@@ -164,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                         const Icon(Icons.attach_money,
                             size: 30, color: Colors.yellow),
                         Text(
-                          '${_user.userPoints}',
+                          '${_user.userPoints.toInt()}',
                           style: const TextStyle(
                               fontSize: 25, color: Colors.white),
                         )

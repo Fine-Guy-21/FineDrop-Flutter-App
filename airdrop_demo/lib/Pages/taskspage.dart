@@ -3,6 +3,7 @@ import 'package:airdrop_demo/model/tasks.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+// import 'package:url_launcher/url_launcher.dart';
 
 class TasksPage extends StatefulWidget {
   const TasksPage({super.key});
@@ -14,6 +15,12 @@ class TasksPage extends StatefulWidget {
 class _TasksPageState extends State<TasksPage> {
   late final UserProfile _user = UserProfile()..userName = 'FineGuy';
 
+  void _updateUserPoints(int pointsChange) {
+    setState(() {
+      _user.userPoints += pointsChange; // Update userPoints
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height - 100;
@@ -22,107 +29,117 @@ class _TasksPageState extends State<TasksPage> {
     return SafeArea(
       child: Center(
         child: Column(
-        children: [
-          // App Bar
-          Container(
-            height: screenHeight * (9 / 100),
-            width: screenWidth,
-            padding: const EdgeInsets.all(8),
-            margin: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: AppColors.surfaceColor,
-              border: Border.all(color: AppColors.primaryColor, width: 1),
-            ),
-            child: AnimatedTextKit(
-              onTap: () => {},
-              animatedTexts: [
-                TyperAnimatedText(
-                  'Hello, ${_user.userName}',
-                  textStyle: const TextStyle(
-                    fontSize: 20,
-                    color: AppColors.textSecondary,
-                  ),
-                  textAlign: TextAlign.start,
-                  speed: const Duration(milliseconds: 100),
-                ),
-              ],
-              totalRepeatCount: 1,
-            ),
-          ),
-          
-          // Amount of points
-          Container(
-            margin: const EdgeInsets.fromLTRB(6, 5, 6, 5),
-            padding: const EdgeInsets.fromLTRB(0, 2, 0, 2 ),
-            width: screenWidth,
+          children: [
+            // Your app bar and other UI elements...
 
-            decoration: BoxDecoration(
-              color: AppColors.surfaceColor,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: AppColors.primaryColor, 
-                width: 1),
-            ),
-            child:Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(Icons.attach_money,
-                            size: 30, color:Colors.yellow),
-                        Text(
-                          '${_user.userPoints}',
-                          style: const TextStyle(
-                              fontSize: 25, color: Colors.white),
-                        )
-                      ],
+Center(
+            child: Container(
+              height: screenHeight * (9 / 100),
+              width: screenWidth,
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.surfaceColor,
+                  border: Border.all(color: AppColors.primaryColor, width: 1)),
+              child: AnimatedTextKit(
+                onTap: () => {},
+                animatedTexts: [
+                  TyperAnimatedText(
+                    'Hello, ${_user.userName}',
+                    textStyle: const TextStyle(
+                      fontSize: 20,
+                      color: AppColors.textSecondary,
                     ),
-          ),
-
-          // Main action area
-          Container(
-            margin: const EdgeInsets.fromLTRB(6, 10, 6, 15),
-            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-            width: screenWidth,
-            height: screenHeight * (81 / 100),
-            decoration: BoxDecoration(
-              color: AppColors.surfaceColor,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.primaryColor, width: 1),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: 5,
-              children: [
-                const Text('Tasks',
                     textAlign: TextAlign.start,
-                    style:  TextStyle(
-                      fontSize: 25,
-                      color: AppColors.textPrimary,
-                    )),
-
-                Expanded(
-              child: ListView.builder(
-                itemCount: fineDropTasks.length,
-                itemBuilder: (context, index) {
-                  final task = fineDropTasks[index];
-                  return TaskItem(task: task);
-                },
+                    speed: const Duration(milliseconds: 100),
+                  )
+                ],
+                totalRepeatCount: 2,
               ),
             ),
-              ],
-            )
-          )
-        ],
+          ),
+
+
+            // Amount of points
+            Container(
+              margin: const EdgeInsets.fromLTRB(6, 5, 6, 5),
+              padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+              width: screenWidth,
+              decoration: BoxDecoration(
+                color: AppColors.surfaceColor,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.primaryColor, width: 1),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.attach_money, size: 30, color: Colors.yellow),
+                  Text(
+                    '${_user.userPoints}',
+                    style: const TextStyle(fontSize: 25, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+
+            // Main action area
+            Container(
+              margin: const EdgeInsets.fromLTRB(6, 10, 6, 15),
+              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+              width: screenWidth,
+              height: screenHeight * (81 / 100),
+              decoration: BoxDecoration(
+                color: AppColors.surfaceColor,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: AppColors.primaryColor, width: 1),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: 5,
+                children: [
+                  const Text(
+                    'Tasks',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: fineDropTasks.length,
+                      itemBuilder: (context, index) {
+                        final task = fineDropTasks[index];
+                        return TaskItem(
+                          task: task,
+                          updatePoints: _updateUserPoints, // Pass callback
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-  
-      ));
+    );
   }
 }
 
-class TaskItem extends StatelessWidget {
-  final Task task;
-  const TaskItem({super.key, required this.task});
 
+class TaskItem extends StatefulWidget {
+  final Task task;
+  final Function(int) updatePoints; // Callback to update user points
+
+  const TaskItem({super.key, required this.task, required this.updatePoints});
+
+  @override
+  _TaskItemState createState() => _TaskItemState();
+}
+
+class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -157,7 +174,7 @@ class TaskItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(120),
                   ),
                   child: Image.network(
-                    "${task.taskImage}",
+                    "${widget.task.taskImage}",
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -168,14 +185,28 @@ class TaskItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${task.taskName}",
+                        "${widget.task.taskName}",
                         softWrap: true,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
+                          decoration: _checkStatus(widget.task)
+                              ? TextDecoration.lineThrough
+                              : TextDecoration.none,
                         ),
                       ),
-                      Text('${task.taskReward}\$'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Icon(Icons.attach_money,
+                              size: 12, color: AppColors.textPrimary),
+                          Text(
+                            '${widget.task.taskReward}',
+                            style: const TextStyle(
+                                fontSize: 13, color: AppColors.textPrimary),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -185,13 +216,45 @@ class TaskItem extends StatelessWidget {
 
           // Task Button
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: _checkStatus(widget.task)
+                  ? AppColors.primaryColor
+                  : AppColors.backgroundColor, // Custom green
+              padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              elevation: 5,
+            ),
             onPressed: () {
-              print('Opening link: ${task.taskLink}');
+              print('Opening link: ${widget.task.taskLink}');
+              _changeStatus(widget.task);
             },
-            child: const Icon(Icons.arrow_forward_ios_sharp),
+            child: _checkStatus(widget.task)
+                ? const Icon(Icons.check, color: AppColors.surfaceColor)
+                : const Icon(
+                    Icons.arrow_forward_ios_sharp,
+                    color: AppColors.surfaceColor,
+                  ),
           ),
         ],
       ),
     );
+  }
+
+  void _changeStatus(Task task) {
+    setState(() {
+      if (task.taskStatus == TaskStatus.completed) {
+        task.changeTaskStatus(TaskStatus.incompleted);
+        widget.updatePoints(-task.taskReward); // Deduct points
+      } else {
+        task.changeTaskStatus(TaskStatus.completed);
+        widget.updatePoints(task.taskReward); // Add points
+      }
+    });
+  }
+
+  bool _checkStatus(Task task) {
+    return task.taskStatus == TaskStatus.completed;
   }
 }
