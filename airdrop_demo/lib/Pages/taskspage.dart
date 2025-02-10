@@ -1,6 +1,9 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:airdrop_demo/model/color.dart';
 import 'package:airdrop_demo/model/tasks.dart';
 import 'package:airdrop_demo/model/user.dart';
+import 'package:airdrop_demo/services/local_data.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 // import 'package:url_launcher/url_launcher.dart';
@@ -13,13 +16,33 @@ class TasksPage extends StatefulWidget {
 }
 
 class _TasksPageState extends State<TasksPage> {
-  late final UserProfile _user = UserProfile()..userName = 'FineGuy';
+  late UserProfile _user;
+  final DatabaseFileRoutines db = DatabaseFileRoutines();
 
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    UserProfile user = await db.readUserProfile();
+    setState(() {
+      _user = user;
+    });
+  }
+
+  void _saveUserData() async {
+    await db.writeUserProfile(_user);
+  }
   void _updateUserPoints(int pointsChange) {
     setState(() {
       _user.userPoints += pointsChange; // Update userPoints
     });
+    _saveUserData();
   }
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -136,10 +159,10 @@ class TaskItem extends StatefulWidget {
   const TaskItem({super.key, required this.task, required this.updatePoints});
 
   @override
-  _TaskItemState createState() => _TaskItemState();
+  TaskItemState createState() => TaskItemState();
 }
 
-class _TaskItemState extends State<TaskItem> {
+class TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -174,7 +197,7 @@ class _TaskItemState extends State<TaskItem> {
                     borderRadius: BorderRadius.circular(120),
                   ),
                   child: Image.network(
-                    "${widget.task.taskImage}",
+                    widget.task.taskImage,
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -185,7 +208,7 @@ class _TaskItemState extends State<TaskItem> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${widget.task.taskName}",
+                        widget.task.taskName,
                         softWrap: true,
                         style: TextStyle(
                           fontSize: 14,
@@ -227,7 +250,7 @@ class _TaskItemState extends State<TaskItem> {
               elevation: 5,
             ),
             onPressed: () {
-              print('Opening link: ${widget.task.taskLink}');
+              debugPrint('Opening link: ${widget.task.taskLink}');
               _changeStatus(widget.task);
             },
             child: _checkStatus(widget.task)

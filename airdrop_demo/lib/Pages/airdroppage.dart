@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/color.dart';
 import 'package:airdrop_demo/model/user.dart';
@@ -95,7 +97,7 @@ class _AirdropPageState extends State<AirdropPage> {
                   // Connect TON Wallet Button
                   ElevatedButton(
                     onPressed: () {
-                      print("Connect TON Wallet clicked!");
+                      debugPrint("Connect TON Wallet clicked!");
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor, // Custom green

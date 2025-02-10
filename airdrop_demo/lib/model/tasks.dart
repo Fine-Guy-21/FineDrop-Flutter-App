@@ -3,19 +3,40 @@ class Task {
   String taskName;
   String taskLink;
   int taskReward;
-  TaskStatus taskStatus; // Make this non-nullable
+  TaskStatus taskStatus;
 
   Task({
     required this.taskImage,
     required this.taskName,
     required this.taskLink,
     required this.taskReward,
-    this.taskStatus = TaskStatus.incompleted, // Default value
+    this.taskStatus = TaskStatus.incompleted,
   });
 
-  // Method to change the task status
   void changeTaskStatus(TaskStatus newStatus) {
     taskStatus = newStatus;
+  }
+
+  // Convert Task instance to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'taskImage': taskImage,
+      'taskName': taskName,
+      'taskLink': taskLink,
+      'taskReward': taskReward,
+      'taskStatus': taskStatus.index, // Store as an integer for easier serialization
+    };
+  }
+
+  // Create Task instance from JSON
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      taskImage: json['taskImage'],
+      taskName: json['taskName'],
+      taskLink: json['taskLink'],
+      taskReward: json['taskReward'],
+      taskStatus: TaskStatus.values[json['taskStatus']], // Convert back from int to enum
+    );
   }
 }
 
@@ -23,6 +44,7 @@ enum TaskStatus {
   completed,
   incompleted,
 }
+
 
 List<Task> fineDropTasks = [
     Task(

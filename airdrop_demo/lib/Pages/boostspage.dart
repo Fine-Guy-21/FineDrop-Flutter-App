@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 import 'package:airdrop_demo/model/color.dart';
+import 'package:airdrop_demo/services/local_data.dart';
 import 'package:flutter/material.dart';
 import '../model/user.dart';
 
@@ -12,6 +13,25 @@ class EnergyBoost extends StatefulWidget {
 }
 
 class _EnergyBoostState extends State<EnergyBoost> {
+  late UserProfile _user;
+  final DatabaseFileRoutines db = DatabaseFileRoutines();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    UserProfile user = await db.readUserProfile();
+    setState(() {
+      _user = user;
+    });
+  }
+
+  void _saveUserData() async {
+    await db.writeUserProfile(_user);
+  }
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height - 100;
@@ -168,6 +188,7 @@ class _EnergyBoostState extends State<EnergyBoost> {
                                     );
                                   }
                                 });
+                                _saveUserData();
                               },
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(
@@ -260,7 +281,7 @@ class _EnergyBoostState extends State<EnergyBoost> {
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
-                                        'Lvl ${widget.user.multitaplevel}',
+                                        'Lvl ${widget.user.multitaplevel.toInt()}',
                                         textAlign: TextAlign.start,
                                         style: const TextStyle(
                                             fontSize: 13,
@@ -310,6 +331,7 @@ class _EnergyBoostState extends State<EnergyBoost> {
                                     );
                                   }
                                 });
+                                _saveUserData();
                               },
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(
@@ -436,7 +458,7 @@ class _EnergyBoostState extends State<EnergyBoost> {
                                       ),
                                     );
                                   }
-                                });
+                                });_saveUserData();
                               },
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(

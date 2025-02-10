@@ -69,7 +69,7 @@ class _CardsPageState extends State<CardsPage> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.65,
+                        childAspectRatio: 0.8,
                         crossAxisSpacing: 13,
                         mainAxisSpacing: 13,
                       ),
@@ -133,9 +133,9 @@ class _CardsPageState extends State<CardsPage> {
                       const BorderRadius.vertical(top: Radius.circular(16)),
                   child: Image.network(
                     card.imageUrl,
-                    height: 82,
+                    height: 70,
                     width: double.infinity,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 Padding(

@@ -4,27 +4,48 @@ import 'package:airdrop_demo/model/tasks.dart';
 import 'package:flutter/foundation.dart';
 
 class UserProfile {
-  int? id = 1;
+  int? id;
   String? userName;
-  int pointPerTap = 1;
-  double userPoints = 4121;
-  int nextLevel = 5000;
-  double profitPerHour = 0;
-  double mineEnergy = 3000;
-  double maxMineEnergy = 3000;
-  bool isactive = false;
+  double pointPerTap;
+  double userPoints;
+  int nextLevel;
+  double profitPerHour;
+  double mineEnergy;
+  double maxMineEnergy;
+  bool isactive;
   bool _isReSt = false;
-  List<Task>? tasks;
-  List<CardModel>? cards = [];
-  List<UserProfile> friends = [];
-  int fullenergy = 6;
-  int maxfullenergy = 6;
-  int multitaplevel = 1;
-  double multitapPrice = 300;
-  int energylimitlevel = 1;
-  double energylimitPrice = 500;
-
+  List<Task> tasks = [];
+  List<CardModel>? cards;
+  List<UserProfile> friends;
+  int fullenergy;
+  int maxfullenergy;
+  double multitaplevel;
+  double multitapPrice;
+  int energylimitlevel;
+  double energylimitPrice;
+  int minutes = 0;
   Timer? timer;
+
+  UserProfile({
+    this.id = 1,
+    this.userName,
+    this.pointPerTap = 1,
+    this.userPoints = 1,
+    this.nextLevel = 5000,
+    this.profitPerHour = 0,
+    this.mineEnergy = 3000,
+    this.maxMineEnergy = 3000,
+    this.isactive = false,
+    this.tasks = const [],
+    this.cards,
+    this.friends = const [],
+    this.fullenergy = 6,
+    this.maxfullenergy = 6,
+    this.multitaplevel = 1,
+    this.multitapPrice = 300,
+    this.energylimitlevel = 1,
+    this.energylimitPrice = 500,
+  });
 
   void pointsForNextLevel() {
     if (userPoints >= nextLevel) {
@@ -98,9 +119,74 @@ class UserProfile {
   }
   }
 
+  void profitperhourupdate(){
+    minutes++;
+    if (minutes == 60){
+      minutes = 0;
+      userPoints += profitPerHour;
+    }
+  }
+
   void startTimer() {
   Timer.periodic(const Duration(minutes: 1), (timer) {
     replenisFullEnergy();
+    profitperhourupdate();
   });
 }
+
+// Convert UserProfile to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "userName": userName,
+      "pointPerTap": pointPerTap,
+      "userPoints": userPoints,
+      "nextLevel": nextLevel,
+      "profitPerHour": profitPerHour,
+      "mineEnergy": mineEnergy,
+      "maxMineEnergy": maxMineEnergy,
+      "isactive": isactive,
+      "fullenergy": fullenergy,
+      "maxfullenergy": maxfullenergy,
+      "multitaplevel": multitaplevel,
+      "multitapPrice": multitapPrice,
+      "energylimitlevel": energylimitlevel,
+      "energylimitPrice": energylimitPrice,
+      "friends": friends.map((friend) => friend.toJson()).toList(),
+      "cards": cards?.map((card) => card.toJson()).toList() ?? [],
+      "tasks": tasks.map((task) => task.toJson()).toList(),
+    };
+  }
+  
+  factory UserProfile.fromJson(Map<String, dynamic> json) {
+    return UserProfile(
+      id: json["id"],
+      userName: json["userName"],
+      pointPerTap: json["pointPerTap"],
+      userPoints: json["userPoints"].toDouble(),
+      nextLevel: json["nextLevel"],
+      profitPerHour: json["profitPerHour"].toDouble(),
+      mineEnergy: json["mineEnergy"].toDouble(),
+      maxMineEnergy: json["maxMineEnergy"].toDouble(),
+      isactive: json["isactive"],
+      fullenergy: json["fullenergy"],
+      maxfullenergy: json["maxfullenergy"],
+      multitaplevel: json["multitaplevel"],
+      multitapPrice: json["multitapPrice"].toDouble(),
+      energylimitlevel: json["energylimitlevel"],
+      energylimitPrice: json["energylimitPrice"].toDouble(),
+      friends: (json["friends"] as List)
+          .map((friend) => UserProfile.fromJson(friend))
+          .toList(),
+      cards: (json["cards"] as List?)
+          ?.map((card) => CardModel.fromJson(card))
+          .toList(),
+      tasks: (json["tasks"] as List?)
+          !.map((task) => Task.fromJson(task))
+          .toList(),
+    );
+  }
+
 }
+
+

@@ -1,9 +1,9 @@
 class CardModel {
-   String title;
-   double profitPerHour;
-   int level;
-   String imageUrl;
-   double price;
+  String title;
+  double profitPerHour;
+  int level;
+  String imageUrl;
+  double price;
 
   CardModel({
     required this.title,
@@ -13,18 +13,41 @@ class CardModel {
     required this.price,
   });
 
-void priceForNextLevel(oldprice) {
-  price = oldprice * 1.5;
-}
-void incrementLevel(oldlevel) {
-  level = oldlevel + 1;
+  void priceForNextLevel(double oldPrice) {
+    price = oldPrice * 1.5;
+  }
+
+  void incrementLevel(int oldLevel) {
+    level = oldLevel + 1;
+  }
+
+  void profitPerHourForNextLevel(double oldProfitPerHour) {
+    profitPerHour = oldProfitPerHour * 1.2;
+  }
+
+  // Convert a CardModel instance to a JSON object
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'profitPerHour': profitPerHour,
+      'level': level,
+      'imageUrl': imageUrl,
+      'price': price,
+    };
+  }
+
+  // Create a CardModel instance from a JSON object
+  factory CardModel.fromJson(Map<String, dynamic> json) {
+    return CardModel(
+      title: json['title'],
+      profitPerHour: json['profitPerHour'].toDouble(),
+      level: json['level'],
+      imageUrl: json['imageUrl'],
+      price: json['price'].toDouble(),
+    );
+  }
 }
 
-void profitPerHourForNextLevel(oldprofitPerHour) {
-  profitPerHour = oldprofitPerHour * 1.2;
-}
-
-}
 
 final List<CardModel> cards = [
     

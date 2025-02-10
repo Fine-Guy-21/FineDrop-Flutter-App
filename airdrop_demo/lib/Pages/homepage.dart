@@ -1,4 +1,5 @@
 import 'package:airdrop_demo/model/color.dart';
+import 'package:airdrop_demo/services/local_data.dart';
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:airdrop_demo/Pages/boostsPage.dart';
@@ -12,16 +13,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final UserProfile _user = UserProfile()..userName = 'FineGuy';
+  late UserProfile _user;
+  final DatabaseFileRoutines db = DatabaseFileRoutines();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    UserProfile user = await db.readUserProfile();
+    setState(() {
+      _user = user;
+    });
+  }
+
+  void _saveUserData() async {
+    await db.writeUserProfile(_user);
+  }
 
   void _onButtonTap() {
     setState(() {
-      _user.userPoints += _user.pointPerTap;
-      // print('Userpoint is ${_user.userPoints}');
+      _user.userPoints += _user.pointPerTap.toDouble();
       _user.depleteEnergy();
       _user.pointsForNextLevel();
       _user.startEnergyReplenishment();
     });
+    _saveUserData(); // Save after updating user data
   }
 
   @override
@@ -90,14 +109,29 @@ class _HomePageState extends State<HomePage> {
                         border:
                             Border.all(color: AppColors.primaryColor, width: 1),
                       ),
-                      child: Text(
-                        "Points Per Tap \n ${_user.pointPerTap}",
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 13,
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Text(
+                            "Points Per Tap",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                              fontSize: 13,
+                            ),
+                          ),
+                          Text(
+                            "${_user.pointPerTap.toInt()}",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -114,15 +148,30 @@ class _HomePageState extends State<HomePage> {
                           border: Border.all(
                               color: AppColors.primaryColor, width: 1),
                         ),
-                        child: Text(
-                          "Next level \n ${_user.nextLevel}",
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 13,
+                        child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Text(
+                            "Next Level",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                              fontSize: 13,
+                            ),
                           ),
-                        ),
+                          Text(
+                            "${_user.nextLevel}",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                        ],
+                      ),
                       )),
 
                   // pph
@@ -137,14 +186,29 @@ class _HomePageState extends State<HomePage> {
                         border:
                             Border.all(color: AppColors.primaryColor, width: 1),
                       ),
-                      child: Text(
-                        "Profit per hour \n ${_user.profitPerHour.toInt()}",
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 13,
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Text(
+                            "Profit Per Hour",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style:  TextStyle(
+                              fontSize: 13,
+                            ),
+                          ),
+                          Text(
+                            "${_user.profitPerHour.toInt()}",
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   )
