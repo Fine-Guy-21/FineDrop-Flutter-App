@@ -1,4 +1,4 @@
-import 'package:airdrop_demo/designs/color.dart';
+import 'package:airdrop_demo/model/color.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:flutter/material.dart';
 

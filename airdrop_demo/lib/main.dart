@@ -4,7 +4,7 @@ import 'package:airdrop_demo/Pages/cardspage.dart';
 import 'package:airdrop_demo/Pages/invitepage.dart';
 import 'package:airdrop_demo/Pages/taskspage.dart';
 import 'package:airdrop_demo/Pages/homepage.dart';
-import 'package:airdrop_demo/designs/color.dart';
+import 'package:airdrop_demo/model/color.dart';
 
 void main() {
   

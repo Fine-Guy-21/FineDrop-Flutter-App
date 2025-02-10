@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:airdrop_demo/designs/color.dart';
+import 'package:airdrop_demo/model/color.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 

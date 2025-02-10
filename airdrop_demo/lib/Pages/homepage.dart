@@ -1,4 +1,4 @@
-import 'package:airdrop_demo/designs/color.dart';
+import 'package:airdrop_demo/model/color.dart';
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:airdrop_demo/Pages/boostsPage.dart';
@@ -79,61 +79,75 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   // ppt
-                  Container(
-                    width: screenWidth * (30 / 100),
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: AppColors.surfaceColor,
-                      border:
-                          Border.all(color: AppColors.primaryColor, width: 1),
-                    ),
-                    child: Text(
-                      "Points Per Tap \n ${_user.pointPerTap}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
+                  Tooltip(
+                    message: 'Points per tap',
+                    child: Container(
+                      width: screenWidth * (30 / 100),
+                      height: screenHeight * 0.09,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: AppColors.surfaceColor,
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 1),
+                      ),
+                      child: Text(
+                        "Points Per Tap \n ${_user.pointPerTap}",
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ),
 
                   // nl
-                  Container(
-                    width: screenWidth * (30 / 100),
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: AppColors.surfaceColor,
-                      border:
-                          Border.all(color: AppColors.primaryColor, width: 1),
-                    ),
-                    child: Text(
-                      "Next level \n ${_user.nextLevel}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
-                      ),
-                    ),
-                  ),
+                  Tooltip(
+                      message: 'Next Level',
+                      child: Container(
+                        width: screenWidth * (30 / 100),
+                        height: screenHeight * 0.09,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: AppColors.surfaceColor,
+                          border: Border.all(
+                              color: AppColors.primaryColor, width: 1),
+                        ),
+                        child: Text(
+                          "Next level \n ${_user.nextLevel}",
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 13,
+                          ),
+                        ),
+                      )),
 
                   // pph
-                  Container(
-                    width: screenWidth * (30 / 100),
-                    height: screenHeight * 0.09,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: AppColors.surfaceColor,
-                      border:
-                          Border.all(color: AppColors.primaryColor, width: 1),
-                    ),
-                    child: Text(
-                      "Profit per hour \n ${_user.profitPerHour.toInt()}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
+                  Tooltip(
+                    message: 'Profit per hour',
+                    child: Container(
+                      width: screenWidth * (30 / 100),
+                      height: screenHeight * 0.09,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: AppColors.surfaceColor,
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 1),
+                      ),
+                      child: Text(
+                        "Profit per hour \n ${_user.profitPerHour.toInt()}",
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontSize: 13,
+                        ),
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),

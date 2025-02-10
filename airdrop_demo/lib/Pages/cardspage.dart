@@ -1,4 +1,4 @@
-import 'package:airdrop_demo/designs/color.dart';
+import 'package:airdrop_demo/model/color.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +69,7 @@ class _CardsPageState extends State<CardsPage> {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.63,
+                        childAspectRatio: 0.65,
                         crossAxisSpacing: 13,
                         mainAxisSpacing: 13,
                       ),
@@ -85,105 +85,75 @@ class _CardsPageState extends State<CardsPage> {
   }
 
   Widget _buildCard(CardModel card) {
-    return GestureDetector(
-      onTap: () => {
-        setState(() {
-          if (_user.userPoints >= card.price) {
-            _user.userPoints -= card.price;
-            _user.profitPerHour += card.profitPerHour;
-            card.incrementLevel(card.level);
-            card.profitPerHourForNextLevel(card.profitPerHour);
-            card.priceForNextLevel(card.price);
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Not enough points'),
-                backgroundColor: Colors.red, // Optional: Customize the color
-                duration:
-                    Duration(seconds: 2), // Optional: Duration of the SnackBar
-              ),
-            );
-          }
-        })
-      },
-      child: Container(
-        width: 160,
+    return Tooltip(
+        message: card.title,
+        textStyle:const TextStyle(color: Colors.white, fontSize: 13),
         decoration: BoxDecoration(
-          color: AppColors.secondaryColor,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.primaryColor, width: 5),
+          color: AppColors.surfaceColor,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.primaryColor, width: 1),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Image.network(
-                card.imageUrl,
-                height: 100,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+        padding:const EdgeInsets.all(5),
+        child: GestureDetector(
+          onTap: () => {
+            setState(() {
+              if (_user.userPoints >= card.price) {
+                _user.userPoints -= card.price;
+                _user.profitPerHour += card.profitPerHour;
+                card.incrementLevel(card.level);
+                card.profitPerHourForNextLevel(card.profitPerHour);
+                card.priceForNextLevel(card.price);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Not enough points'),
+                    backgroundColor:
+                        Colors.red, // Optional: Customize the color
+                    duration: Duration(
+                        seconds: 2), // Optional: Duration of the SnackBar
+                  ),
+                );
+              }
+            })
+          },
+          child: Container(
+            width: 160,
+            decoration: BoxDecoration(
+              color: AppColors.secondaryColor,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: AppColors.primaryColor, width: 5),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    card.title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ClipRRect(
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(16)),
+                  child: Image.network(
+                    card.imageUrl,
+                    height: 82,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
-                  const SizedBox(height: 8),
-                  Row(
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Icon(
-                        Icons.attach_money,
-                        color: Colors.yellow,
-                        size: 16,
-                      ),
-                      const SizedBox(width: 4),
                       Text(
-                        '${card.profitPerHour.toInt()}',
+                        card.title,
                         style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Text(
-                          'lvl ${card.level + 1}',
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                      const Text(
-                        '|',
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           const Icon(
@@ -193,23 +163,64 @@ class _CardsPageState extends State<CardsPage> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '${card.price.toInt()}',
+                            '${card.profitPerHour.toInt()}',
                             style: const TextStyle(
-                              color: Colors.white,
+                              color: Colors.white70,
                               fontSize: 14,
-                              fontWeight: FontWeight.w500,
                             ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              'lvl ${card.level + 1}',
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                          const Text(
+                            '|',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.attach_money,
+                                color: Colors.yellow,
+                                size: 16,
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${card.price.toInt()}',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
