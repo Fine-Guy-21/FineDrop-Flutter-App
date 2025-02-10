@@ -12,11 +12,10 @@ class EnergyBoost extends StatefulWidget {
 }
 
 class _EnergyBoostState extends State<EnergyBoost> {
-
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height - 100;
-    final screenWidth = MediaQuery.of(context).size.width - 30;
+    // final screenWidth = MediaQuery.of(context).size.width - 30;
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -89,8 +88,8 @@ class _EnergyBoostState extends State<EnergyBoost> {
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: AppColors.surfaceColor,
-                        border: Border.all(
-                            color: AppColors.secondaryColor, width: 1),
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
@@ -143,37 +142,39 @@ class _EnergyBoostState extends State<EnergyBoost> {
                               ),
                             ],
                           ),
+
+                          //button
+
                           ElevatedButton(
                               onPressed: () {
-                                  setState(() {
-                                    var res = widget.user.useboostenergy();
+                                setState(() {
+                                  var res = widget.user.useboostenergy();
 
-                                    if (res) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Energy Boosted'),
-                                      duration: Duration(seconds: 2),
-                                      backgroundColor: Colors.green,
-                                    ),
-                                  );
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('Come Back Tomorrow'),
-                                      duration: Duration(seconds: 2),
-                                      backgroundColor: Colors.red,
-                                    ),
-                                  );
-                                }
-                                  });
-                                
+                                  if (res) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Energy Boosted'),
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text('Come Back Tomorrow'),
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    );
+                                  }
+                                });
                               },
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(
                                       AppColors.primaryColor),
                                   foregroundColor: WidgetStateProperty.all(
                                       AppColors.surfaceColor)),
-                              child: const Text('Purchase')),
+                              child: const Text('Use')),
                         ],
                       ),
                     ),
@@ -196,13 +197,13 @@ class _EnergyBoostState extends State<EnergyBoost> {
 
                     // Multi tap
                     Container(
-                      margin: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.only(right: 15),
                       padding: const EdgeInsets.all(8),
-                      width: screenWidth * 0.9,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.surfaceColor,
-                        border: Border.all(
-                            color: AppColors.secondaryColor, width: 2),
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
@@ -236,27 +237,86 @@ class _EnergyBoostState extends State<EnergyBoost> {
                                 width: 10,
                               ),
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text('Multi Tap',
                                       style: TextStyle(
-                                          fontSize: 14, color: Colors.black)),
-                                  Text(
-                                    '${widget.user.pointPerTap}  1000\$',
-                                    style: const TextStyle(
-                                        fontSize: 10, color: Colors.black),
-                                  ),
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500)),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.attach_money,
+                                        size: 15,
+                                        color: Colors.yellow,
+                                      ),
+                                      Text(
+                                        ' ${widget.user.multitapPrice.toInt()}  | ',
+                                        textAlign: TextAlign.start,
+                                        style: const TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        'Lvl ${widget.user.multitaplevel}',
+                                        textAlign: TextAlign.start,
+                                        style: const TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  var res = widget.user.mutlitapIncrement();
+                                  if (res) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Center(
+                                            child:
+                                                Text('Purchased Succesfully')),
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Center(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize
+                                                .min, // Adjusts the row size to fit its children
+                                            children: [
+                                              Text('Not enough '),
+                                              Icon(
+                                                Icons.attach_money,
+                                                size: 20,
+                                                color: Colors.yellow,
+                                              ), // The money icon
+                                            ],
+                                          ),
+                                        ),
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    );
+                                  }
+                                });
+                              },
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(
                                       AppColors.primaryColor),
                                   foregroundColor: WidgetStateProperty.all(
                                       AppColors.surfaceColor)),
-                              child: const Text('Purchase')),
+                              child: const Text('Buy')),
                         ],
                       ),
                     ),
@@ -267,13 +327,13 @@ class _EnergyBoostState extends State<EnergyBoost> {
 
                     //Energy Limit
                     Container(
-                      margin: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.only(right: 15),
                       padding: const EdgeInsets.all(8),
-                      width: screenWidth * 0.9,
+                      width: double.infinity,
                       decoration: BoxDecoration(
                         color: AppColors.surfaceColor,
-                        border: Border.all(
-                            color: AppColors.secondaryColor, width: 2),
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(8),
                         boxShadow: [
                           BoxShadow(
@@ -310,24 +370,80 @@ class _EnergyBoostState extends State<EnergyBoost> {
                                 children: [
                                   const Text('Energy Limit',
                                       style: TextStyle(
-                                          fontSize: 14, color: Colors.black)),
-                                  Text(
-                                    '${widget.user.maxMineEnergy}  1000\$',
-                                    style: const TextStyle(
-                                        fontSize: 10, color: Colors.black),
-                                  ),
+                                          fontSize: 15,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500)),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.attach_money,
+                                        size: 15,
+                                        color: Colors.yellow,
+                                      ),
+                                      Text(
+                                        '${widget.user.energylimitPrice.toInt()}   | ',
+                                        style: const TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        'Lvl ${widget.user.energylimitlevel}',
+                                        style: const TextStyle(
+                                            fontSize: 13,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
                             ],
                           ),
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  var res = widget.user.energyLimitIncrement();
+                                   if (res) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Center(
+                                            child:
+                                                Text('Purchased Succesfully')),
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.green,
+                                      ),
+                                    );
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Center(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize
+                                                .min, // Adjusts the row size to fit its children
+                                            children: [
+                                              Text('Not enough '),
+                                              Icon(
+                                                Icons.attach_money,
+                                                size: 20,
+                                                color: Colors.yellow,
+                                              ), // The money icon
+                                            ],
+                                          ),
+                                        ),
+                                        duration: Duration(seconds: 2),
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    );
+                                  }
+                                });
+                              },
                               style: ButtonStyle(
                                   backgroundColor: WidgetStateProperty.all(
                                       AppColors.primaryColor),
                                   foregroundColor: WidgetStateProperty.all(
                                       AppColors.surfaceColor)),
-                              child: const Text('Purchase')),
+                              child: const Text('Buy')),
                         ],
                       ),
                     ),
@@ -336,5 +452,4 @@ class _EnergyBoostState extends State<EnergyBoost> {
               )))),
     );
   }
-
 }

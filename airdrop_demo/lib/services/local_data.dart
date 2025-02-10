@@ -10,7 +10,7 @@ class DatabaseFileRoutines {
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    return File('$path/local_persistence.json');
+    return File('$path/local_data.json');
   }
 
   // Read the journals JSON file

@@ -71,7 +71,7 @@ class UserProfile {
       userPoints -= energylimitPrice;
       energylimitPrice *= 1.5;
       energylimitlevel++;
-      maxMineEnergy *= 1.5;
+      maxMineEnergy *= 1.2;
       return true;
     } else {
       return false;
