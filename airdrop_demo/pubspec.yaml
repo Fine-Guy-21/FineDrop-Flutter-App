@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   animated_text_kit: ^4.2.2
   url_launcher: ^6.3.1
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:

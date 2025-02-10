@@ -147,7 +147,7 @@ class _CardsPageState extends State<CardsPage> {
                         card.title,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 15,
                           fontWeight: FontWeight.w500,
                         ),
                         maxLines: 1,

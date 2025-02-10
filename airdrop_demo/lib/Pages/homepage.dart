@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                               const Duration(milliseconds: 1200), (t) => t),
                           builder: (ctx, v) {
                             return Text(
-                              '${_user.mineEnergy}/${_user.maxMineEnergy}',
+                              '${_user.mineEnergy.toInt()}/${_user.maxMineEnergy.toInt()}',
                               style: const TextStyle(
                                   fontSize: 17, color: Colors.white),
                             );

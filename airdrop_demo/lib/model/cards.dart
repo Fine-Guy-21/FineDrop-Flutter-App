@@ -119,5 +119,12 @@ final List<CardModel> cards = [
       imageUrl: 'https://img.icons8.com/?size=100&id=GBu1KXnCZZ8j&format=png&color=000000',
       price: 1400,
     ),
+    CardModel(
+      title: 'AI Avatar',
+      profitPerHour: 480,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=6az9wbEz5UKE&format=png&color=000000',
+      price: 1500,
+    ),
 
   ];
