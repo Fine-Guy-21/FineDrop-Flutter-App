@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/model/color.dart';
-import 'package:airdrop_demo/model/user.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+// import 'package:airdrop_demo/model/user.dart';
+// import 'package:animated_text_kit/animated_text_kit.dart';
 
 class AirdropPage extends StatefulWidget {
   const AirdropPage({super.key});
@@ -13,49 +13,49 @@ class AirdropPage extends StatefulWidget {
 }
 
 class _AirdropPageState extends State<AirdropPage> {
-  late final UserProfile _user = UserProfile()..userName = 'FineGuy';
+  // late final UserProfile _user = UserProfile()..userName = 'FineGuy';
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height - 100;
-    final screenWidth = MediaQuery.of(context).size.width - 30;
+    // final screenHeight = MediaQuery.of(context).size.height - 100;
+    // final screenWidth = MediaQuery.of(context).size.width - 30;
     return SafeArea(
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // App Bar
-            Container(
-              height: screenHeight * (9 / 100),
-              width: screenWidth,
-              padding: const EdgeInsets.only(right: 10, left: 5),
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.surfaceColor,
-                  border: Border.all(color: AppColors.primaryColor, width: 1)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                   AnimatedTextKit(
-                          onTap: () => {},
-                          animatedTexts: [
-                            TyperAnimatedText(
-                              'Hello, ${_user.userName}',
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                color: AppColors.textSecondary,
-                              ),
-                              textAlign: TextAlign.start,
-                              speed: const Duration(milliseconds: 100),
-                            )
-                          ],
-                          totalRepeatCount: 2,
-                        ),
-                        IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.person))
-                ],
-              )),
+            // Container(
+            //   height: screenHeight * (9 / 100),
+            //   width: screenWidth,
+            //   padding: const EdgeInsets.only(right: 10, left: 5),
+            //   margin: const EdgeInsets.all(10),
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(10),
+            //       color: AppColors.surfaceColor,
+            //       border: Border.all(color: AppColors.primaryColor, width: 1)),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //        AnimatedTextKit(
+            //               onTap: () => {},
+            //               animatedTexts: [
+            //                 TyperAnimatedText(
+            //                   'Hello, ${_user.userName}',
+            //                   textStyle: const TextStyle(
+            //                     fontSize: 20,
+            //                     color: AppColors.textSecondary,
+            //                   ),
+            //                   textAlign: TextAlign.start,
+            //                   speed: const Duration(milliseconds: 100),
+            //                 )
+            //               ],
+            //               totalRepeatCount: 2,
+            //             ),
+            //             IconButton(
+            //                 onPressed: () {}, icon: const Icon(Icons.person))
+            //     ],
+            //   )),
 
             const SizedBox(height: 20),
 

@@ -4,7 +4,7 @@ import 'package:airdrop_demo/model/color.dart';
 import 'package:airdrop_demo/model/tasks.dart';
 import 'package:airdrop_demo/model/user.dart';
 import 'package:airdrop_demo/services/local_data.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
+// import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
@@ -35,14 +35,13 @@ class _TasksPageState extends State<TasksPage> {
   void _saveUserData() async {
     await db.writeUserProfile(_user);
   }
+
   void _updateUserPoints(int pointsChange) {
     setState(() {
       _user.userPoints += pointsChange; // Update userPoints
     });
     _saveUserData();
   }
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,37 +54,37 @@ class _TasksPageState extends State<TasksPage> {
           children: [
             // Your app bar and other UI elements...
 
-             Container(
-              height: screenHeight * (9 / 100),
-              width: screenWidth,
-              padding: const EdgeInsets.only(right: 10, left: 5),
-              margin: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.surfaceColor,
-                  border: Border.all(color: AppColors.primaryColor, width: 1)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                   AnimatedTextKit(
-                          onTap: () => {},
-                          animatedTexts: [
-                            TyperAnimatedText(
-                              'Hello, ${_user.userName}',
-                              textStyle: const TextStyle(
-                                fontSize: 20,
-                                color: AppColors.textSecondary,
-                              ),
-                              textAlign: TextAlign.start,
-                              speed: const Duration(milliseconds: 100),
-                            )
-                          ],
-                          totalRepeatCount: 2,
-                        ),
-                        IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.person))
-                ],
-              )),
+            //  Container(
+            //   height: screenHeight * (9 / 100),
+            //   width: screenWidth,
+            //   padding: const EdgeInsets.only(right: 10, left: 5),
+            //   margin: const EdgeInsets.all(10),
+            //   decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(10),
+            //       color: AppColors.surfaceColor,
+            //       border: Border.all(color: AppColors.primaryColor, width: 1)),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //        AnimatedTextKit(
+            //               onTap: () => {},
+            //               animatedTexts: [
+            //                 TyperAnimatedText(
+            //                   'Hello, ${_user.userName}',
+            //                   textStyle: const TextStyle(
+            //                     fontSize: 20,
+            //                     color: AppColors.textSecondary,
+            //                   ),
+            //                   textAlign: TextAlign.start,
+            //                   speed: const Duration(milliseconds: 100),
+            //                 )
+            //               ],
+            //               totalRepeatCount: 2,
+            //             ),
+            //             IconButton(
+            //                 onPressed: () {}, icon: const Icon(Icons.person))
+            //     ],
+            //   )),
 
             // Amount of points
             Container(
