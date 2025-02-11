@@ -14,7 +14,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.surfaceColor,
+        backgroundColor: AppColors.backgroundColor,
         body: SafeArea(
             child: Center(
           child: Column(
@@ -161,7 +161,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(height: 16.0),
 
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginPage()),
+                            );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
                               AppColors.primaryColor, // Custom green
