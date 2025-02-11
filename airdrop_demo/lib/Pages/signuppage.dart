@@ -19,8 +19,9 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              Image.asset('assets/FineDrop.png',height:100,width: 100,),
               const Text(
                 'Register',
                 style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w600),
@@ -36,11 +37,12 @@ class _SignUpPageState extends State<SignUpPage> {
                 height: 340,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
-                    color: AppColors.backgroundColor,
-                    border: Border.all(
-                      color: AppColors.primaryColor,
-                      width: 1.0,
-                    )),
+                    // color: AppColors.backgroundColor,
+                    // border: Border.all(
+                    //   color: AppColors.primaryColor,
+                    //   width: 1.0,
+                    // )
+                    ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -87,6 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             _isObscured
                                 ? Icons.visibility
                                 : Icons.visibility_off, // Toggle icon
+                                size: 18,
                           ),
                           onPressed: () {
                             setState(() {
@@ -127,6 +130,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             _isObscured
                                 ? Icons.visibility
                                 : Icons.visibility_off, // Toggle icon
+                                size:18
                           ),
                           onPressed: () {
                             setState(() {

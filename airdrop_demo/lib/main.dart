@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToHome() async {
     // Simulate a loading delay (or perform initialization tasks)
-    await Future.delayed(const Duration(seconds: 6)); // Adjust duration if needed
+    await Future.delayed(const Duration(seconds: 10)); // Adjust duration if needed
     // Navigate to the main scaffold
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
@@ -63,20 +63,20 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return  Scaffold(
+      backgroundColor: AppColors.surfaceColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.flutter_dash,
-                size: 100, color: AppColors.primaryColor), // Replace with your logo
-            SizedBox(height: 40),
-            CircularProgressIndicator(), // Loading animation
-            SizedBox(height: 20),
-            Text("Loading... Please wait",
-            style: TextStyle(
+            Image.asset('assets/FineDrop.png'),
+            const SizedBox(height: 40),
+            const CircularProgressIndicator(color: AppColors.primaryColor,), // Loading animation
+            const SizedBox(height: 20),
+            const Text("Loading... Please wait",
+             style: TextStyle(
               fontSize: 20,
-              color: AppColors.primaryColor
+              color: AppColors.textPrimary
             ),
             ),
           ],

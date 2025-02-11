@@ -23,32 +23,37 @@ class _InvitePageState extends State<InvitePage> {
       children: [
         // App Bar
         Container(
-          height: screenHeight * (9 / 100),
-          width: screenWidth,
-          padding: const EdgeInsets.all(8),
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: AppColors.surfaceColor,
-            border: Border.all(color: AppColors.primaryColor, width: 1),
-          ),
-          child: AnimatedTextKit(
-            onTap: () => {},
-            animatedTexts: [
-              TyperAnimatedText(
-                'Hello, ${_user.userName}',
-                textStyle: const TextStyle(
-                  fontSize: 20,
-                  color: AppColors.textSecondary,
-                ),
-                textAlign: TextAlign.start,
-                speed: const Duration(milliseconds: 100),
-              ),
-            ],
-            totalRepeatCount: 1,
-          ),
-        ),
-        
+              height: screenHeight * (9 / 100),
+              width: screenWidth,
+              padding: const EdgeInsets.only(right: 10, left: 5),
+              margin: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: AppColors.surfaceColor,
+                  border: Border.all(color: AppColors.primaryColor, width: 1)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   AnimatedTextKit(
+                          onTap: () => {},
+                          animatedTexts: [
+                            TyperAnimatedText(
+                              'Hello, ${_user.userName}',
+                              textStyle: const TextStyle(
+                                fontSize: 20,
+                                color: AppColors.textSecondary,
+                              ),
+                              textAlign: TextAlign.start,
+                              speed: const Duration(milliseconds: 100),
+                            )
+                          ],
+                          totalRepeatCount: 2,
+                        ),
+                        IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.person))
+                ],
+              )),
+
         Container(
           margin: const EdgeInsets.fromLTRB(6, 10, 6, 5),
           padding: const EdgeInsets.all(8.0),

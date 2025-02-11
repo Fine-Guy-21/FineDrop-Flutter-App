@@ -53,33 +53,37 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           // as an App Bar
-          Center(
-            child: Container(
+          Container(
               height: screenHeight * (9 / 100),
               width: screenWidth,
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.only(right: 10, left: 5),
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.surfaceColor,
                   border: Border.all(color: AppColors.primaryColor, width: 1)),
-              child: AnimatedTextKit(
-                onTap: () => {},
-                animatedTexts: [
-                  TyperAnimatedText(
-                    'Hello, ${_user.userName}',
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      color: AppColors.textSecondary,
-                    ),
-                    textAlign: TextAlign.start,
-                    speed: const Duration(milliseconds: 100),
-                  )
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                   AnimatedTextKit(
+                          onTap: () => {},
+                          animatedTexts: [
+                            TyperAnimatedText(
+                              'Hello, ${_user.userName}',
+                              textStyle: const TextStyle(
+                                fontSize: 20,
+                                color: AppColors.textSecondary,
+                              ),
+                              textAlign: TextAlign.start,
+                              speed: const Duration(milliseconds: 100),
+                            )
+                          ],
+                          totalRepeatCount: 2,
+                        ),
+                        IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.person))
                 ],
-                totalRepeatCount: 2,
-              ),
-            ),
-          ),
+              )),
 
           const SizedBox(height: 5),
 
@@ -117,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style:  TextStyle(
+                            style: TextStyle(
                               fontSize: 13,
                             ),
                           ),
@@ -127,9 +131,7 @@ class _HomePageState extends State<HomePage> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500
-                            ),
+                                fontSize: 15, fontWeight: FontWeight.w500),
                           )
                         ],
                       ),
@@ -149,29 +151,27 @@ class _HomePageState extends State<HomePage> {
                               color: AppColors.primaryColor, width: 1),
                         ),
                         child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const Text(
-                            "Next Level",
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style:  TextStyle(
-                              fontSize: 13,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Text(
+                              "Next Level",
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 13,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "${_user.nextLevel}",
-                            textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500
-                            ),
-                          )
-                        ],
-                      ),
+                            Text(
+                              "${_user.nextLevel}",
+                              textAlign: TextAlign.center,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
                       )),
 
                   // pph
@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
                             textAlign: TextAlign.center,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style:  TextStyle(
+                            style: TextStyle(
                               fontSize: 13,
                             ),
                           ),
@@ -204,9 +204,7 @@ class _HomePageState extends State<HomePage> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500
-                            ),
+                                fontSize: 15, fontWeight: FontWeight.w500),
                           )
                         ],
                       ),
