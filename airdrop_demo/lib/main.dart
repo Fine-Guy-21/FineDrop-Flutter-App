@@ -1,3 +1,6 @@
+import 'package:airdrop_demo/Pages/signuppage.dart';
+import 'package:airdrop_demo/model/cards.dart';
+import 'package:airdrop_demo/model/tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:airdrop_demo/Pages/airdroppage.dart';
 import 'package:airdrop_demo/Pages/cardspage.dart';
@@ -54,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context ,
-      MaterialPageRoute(builder: (context) => const MySccaffold()),
+      MaterialPageRoute(builder: (context) => const SignUpPage()),
     );
   }
 
@@ -158,6 +161,153 @@ class _MySccaffoldState extends State<MySccaffold> {
 }
 
 
+final List<CardModel> cards = [
+    
+    CardModel(
+      title: 'Coding Enthusiast',
+      profitPerHour: 90,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=l0UsZRTvcGel&format=png&color=000000',     
+      price: 220,
+    ),
+    CardModel(
+      title: 'Crypto Expert',
+      profitPerHour: 120,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=FTifzX1R9L50&format=png&color=000000',
+      price: 300,
+    ),
+    CardModel(
+      title: 'Blockchain Developer',
+      profitPerHour: 150,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=FHQYz1px0h83&format=png&color=000000',
+      price: 400,
+    ),
+    CardModel(
+      title: 'NFT Artist',
+      profitPerHour: 180,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=V4tgjfG0kSwY&format=png&color=000000',
+      price: 500,
+    ),
+    CardModel(
+      title: 'DeFi Expert',
+      profitPerHour: 210,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=E9E7pTmioS0q&format=png&color=000000',
+      price: 600,
+    ),
+    CardModel(
+      title: 'Web3 Developer',
+      profitPerHour: 240,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=e2r7vNlIEGCx&format=png&color=000000',
+      price: 700,
+    ),
+    CardModel(
+      title: 'Metaverse Creator',
+      profitPerHour: 270,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=fL5cWET9Paxh&format=png&color=000000',
+      price: 800,
+    ),
+    CardModel(
+      title: 'AI Specialist',
+      profitPerHour: 300,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=6az9wbEz5UKE&format=png&color=000000',
+      price: 900,
+    ),
+    CardModel(
+      title: 'Game Developer',
+      profitPerHour: 330,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=SrX1UAxClVFN&format=png&color=000000',
+      price: 1000,
+    ),
+    CardModel(
+      title: 'Cybersecurity Expert',
+      profitPerHour: 360,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=YhicuoJvXeaI&format=png&color=000000',
+      price: 1100,
+    ),
+    CardModel(
+      title: 'Quantum Computing Expert',
+      profitPerHour: 390,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=dAIe2P09btNH&format=png&color=000000',
+      price: 1200,
+    ),
+    CardModel(
+      title: 'Space Explorer',
+      profitPerHour: 420,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=eulnKXXLCS2i&format=png&color=000000',
+      price: 1300,
+    ),
+    CardModel(
+      title: 'AI Robot',
+      profitPerHour: 450,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=GBu1KXnCZZ8j&format=png&color=000000',
+      price: 1400,
+    ),
+    CardModel(
+      title: 'AI Avatar',
+      profitPerHour: 480,
+      level: 0,
+      imageUrl: 'https://img.icons8.com/?size=100&id=6az9wbEz5UKE&format=png&color=000000',
+      price: 1500,
+    ),
+
+  ];
+
+List<Task> fineDropTasks = [
+    Task(
+      taskImage: 'https://img.icons8.com/?size=100&id=phOKFKYpe00C&format=png&color=000000', // Placeholder image
+      taskName: 'Follow FineDrop on X',
+      taskLink: 'https://x.com/FineDrop',
+      taskReward: 3000,
+      taskStatus: TaskStatus.incompleted,
+    ),
+    Task(
+      taskImage: 'https://img.icons8.com/?size=100&id=13912&format=png&color=000000', // Placeholder image
+      taskName: 'Like FineDrop on Facebook',
+      taskLink: 'https://facebook.com/FineDrop',
+      taskReward: 1500,
+      taskStatus: TaskStatus.incompleted,
+    ),
+    Task(
+      taskImage: 'https://img.icons8.com/?size=100&id=119026&format=png&color=000000', // Placeholder image
+      taskName: 'Share FineDrop on Instagram',
+      taskLink: 'https://instagram.com/FineDrop',
+      taskReward: 2000,
+      taskStatus: TaskStatus.incompleted,
+    ),
+    Task(
+      taskImage: 'https://img.icons8.com/?size=100&id=2mIgusGquJFz&format=png&color=000000', // Placeholder image
+      taskName: 'Join FineDrop on Discord',
+      taskLink: 'https://discord.com/invite/FineDrop',
+      taskReward: 2500,
+      taskStatus: TaskStatus.incompleted,
+    ),
+    Task(
+      taskImage: 'https://img.icons8.com/?size=100&id=19318&format=png&color=000000', // Placeholder image
+      taskName: 'Subscribe to FineDrop on YouTube',
+      taskLink: 'https://youtube.com/c/FineDrop',
+      taskReward: 3000,
+      taskStatus: TaskStatus.incompleted,
+    ),
+    Task(
+      taskImage: 'https://img.icons8.com/?size=100&id=63306&format=png&color=000000', // Placeholder image
+      taskName: 'Subscribe to FineDrop on Telegram',
+      taskLink: 'https://t.me/FineDrop',
+      taskReward: 3000,
+      taskStatus: TaskStatus.incompleted,)
+    ];
+    
 
 
 
@@ -175,62 +325,3 @@ class _MySccaffoldState extends State<MySccaffold> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-/* class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-       
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
-    );
-  }
-}
- */
