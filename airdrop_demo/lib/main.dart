@@ -145,7 +145,7 @@ class _MySccaffoldState extends State<MySccaffold> {
           ],
           totalRepeatCount: 2,
         ),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person , size: 30,))],
       ),
       backgroundColor: AppColors.backgroundColor,
       body: _currentPage,
