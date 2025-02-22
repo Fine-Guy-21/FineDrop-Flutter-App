@@ -1,6 +1,8 @@
+import 'package:finedrop/Pages/loginpage.dart';
 import 'package:finedrop/Pages/signuppage.dart';
 import 'package:finedrop/model/user.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:finedrop/Pages/airdroppage.dart';
 import 'package:finedrop/Pages/cardspage.dart';
@@ -8,8 +10,14 @@ import 'package:finedrop/Pages/invitepage.dart';
 import 'package:finedrop/Pages/taskspage.dart';
 import 'package:finedrop/Pages/homepage.dart';
 import 'package:finedrop/model/color.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -86,6 +94,27 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 }
 
+class AuthPage extends StatelessWidget {
+  const AuthPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return const MySccaffold();
+            // return const HomePage();
+          } else {
+            return const LoginPage();
+          }
+        },
+      ),
+    );
+  }
+}
+
 //Home Widget loader
 class MySccaffold extends StatefulWidget {
   const MySccaffold({super.key});
@@ -98,7 +127,8 @@ class _MySccaffoldState extends State<MySccaffold> {
   int _currentIndex = 0;
   final List _listPages = [];
   late Widget _currentPage;
-  late final UserProfile user = UserProfile(userName: 'FineGuy');
+  late final UserProfile user =
+      UserProfile(userName: 'FineGuy', email: '21fineguy@gmail.com');
 
   @override
   void initState() {

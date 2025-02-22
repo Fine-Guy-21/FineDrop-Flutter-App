@@ -5,6 +5,7 @@ import 'package:finedrop/model/tasks.dart';
 class UserProfile {
   int? id = 1;
   String? userName;
+  String email;
   double pointPerTap = 1;
   double userPoints = 0;
   int nextLevel = 5000;
@@ -27,6 +28,7 @@ class UserProfile {
 
   UserProfile({
     required this.userName,
+    required this.email,
   });
 
   void pointsForNextLevel() {

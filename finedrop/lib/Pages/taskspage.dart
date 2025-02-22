@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:finedrop/model/color.dart';
 import 'package:finedrop/model/tasks.dart';
 import 'package:finedrop/model/user.dart';

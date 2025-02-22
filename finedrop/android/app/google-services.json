@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "962602656344",
+    "project_id": "finedrop-7b79a",
+    "storage_bucket": "finedrop-7b79a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962602656344:android:3ca9b14cb67b00be54a02d",
+        "android_client_info": {
+          "package_name": "com.example.finedrop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeRGTV1v-nX893zzVrg-R0pp1dHNJkRCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
