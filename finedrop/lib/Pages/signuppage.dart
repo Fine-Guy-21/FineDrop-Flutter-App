@@ -38,10 +38,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 margin: const EdgeInsets.all(30.0),
                 padding: const EdgeInsets.all(24.0),
                 width: double.infinity,
-                height: 340,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
-                  // color: AppColors.backgroundColor,
+                  // color: AppColors.surfaceColor,
                   // border: Border.all(
                   //   color: AppColors.primaryColor,
                   //   width: 1.0,

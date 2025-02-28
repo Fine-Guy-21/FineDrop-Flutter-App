@@ -12,14 +12,6 @@ class LoginPage extends StatefulWidget {
 
 class LoginPageState extends State<LoginPage> {
   bool _isObscured = true;
-
-  void SignIn() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const MySccaffold()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,10 +40,9 @@ class LoginPageState extends State<LoginPage> {
                 margin: const EdgeInsets.all(30.0),
                 padding: const EdgeInsets.all(24.0),
                 width: double.infinity,
-                height: 300,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
-                  // color: AppColors.backgroundColor,
+                  // color: AppColors.surfaceColor,
                   // border: Border.all(
                   //   color: AppColors.primaryColor,
                   //   width: 1.0,
@@ -132,26 +123,16 @@ class LoginPageState extends State<LoginPage> {
 
                     const SizedBox(height: 16.0),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: const Text(
-                            'Forgot Password?',
-                            style: TextStyle(
-                              color: AppColors.primaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
                     const SizedBox(height: 16.0),
 
                     ElevatedButton(
-                        onPressed: SignIn,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MySccaffold()),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
                               AppColors.primaryColor, // Custom green

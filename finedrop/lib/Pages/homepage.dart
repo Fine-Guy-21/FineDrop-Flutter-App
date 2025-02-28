@@ -65,27 +65,41 @@ class _HomePageState extends State<HomePage> {
                             Border.all(color: AppColors.primaryColor, width: 1),
                       ),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Text(
-                            "Points Per Tap",
+                          RichText(
                             textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 13,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Point Per Tap",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            "${widget.user.pointPerTap.toInt()}",
+                          RichText(
                             textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w500),
-                          )
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "${widget.user.pointPerTap.toInt()}",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
+                      // child: Column(
                     ),
                   ),
 
@@ -102,25 +116,38 @@ class _HomePageState extends State<HomePage> {
                               color: AppColors.primaryColor, width: 1),
                         ),
                         child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            const Text(
-                              "Next Level",
+                            RichText(
                               textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 13,
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: "Next Level",
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: AppColors.textPrimary,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              "${widget.user.nextLevel}",
+                            RichText(
                               textAlign: TextAlign.center,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.w500),
-                            )
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: "${widget.user.nextLevel.toInt()}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.textPrimary,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       )),
@@ -138,25 +165,38 @@ class _HomePageState extends State<HomePage> {
                             Border.all(color: AppColors.primaryColor, width: 1),
                       ),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Text(
-                            "Profit Per Hour",
+                          RichText(
                             textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 13,
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "Profit Per Hour",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          Text(
-                            "${widget.user.profitPerHour.toInt()}",
+                          RichText(
                             textAlign: TextAlign.center,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w500),
-                          )
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "${widget.user.profitPerHour.toInt()}",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.textPrimary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
