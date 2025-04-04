@@ -200,7 +200,6 @@ class TaskItemState extends State<TaskItem> {
               elevation: 5,
             ),
             onPressed: () {
-              debugPrint('Opening link: ${widget.task.taskLink}');
               _changeStatus(widget.task);
             },
             child: _checkStatus(widget.task)

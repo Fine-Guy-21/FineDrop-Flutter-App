@@ -15,38 +15,37 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.backgroundColor,
-        body: SafeArea(
-            child: Center(
+      backgroundColor: AppColors.backgroundColor,
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.17),
               Image.asset(
                 'assets/FineDrop.png',
-                height: 100,
-                width: 100,
+                height: 130,
+                width: 200,
               ),
-              const SizedBox(height: 10.0),
               const Text(
-                'Log In',
+                'LogIn',
                 style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w600),
               ),
               const Text(
-                'Log in to your account',
-                style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400),
+                'Log in to continue',
+                style: TextStyle(
+                    fontSize: 18.0,
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w400),
               ),
               Container(
                 margin: const EdgeInsets.all(30.0),
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(10.0),
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
-                  // color: AppColors.surfaceColor,
-                  // border: Border.all(
-                  //   color: AppColors.primaryColor,
-                  //   width: 1.0,
-                  // )
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -59,22 +58,18 @@ class LoginPageState extends State<LoginPage> {
                           Icons.person,
                           size: 15,
                         ),
-
-                        labelText: 'Username', // Label for the text field
-                        hintText:
-                            'Enter Your Name ...', // Hint text inside the text field
-                        border: const OutlineInputBorder(), // Outline border
+                        labelText: 'Username',
+                        hintText: 'Enter Your Name ...',
+                        border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.0),
                           borderSide: const BorderSide(
-                              color: AppColors.primaryColor,
-                              width: 2.0), // Border when focused
+                              color: AppColors.primaryColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(3.0),
                           borderSide: const BorderSide(
-                              color: AppColors.secondaryColor,
-                              width: 1.0), // Border when enabled
+                              color: AppColors.secondaryColor, width: 1.0),
                         ),
                       ),
                     ),
@@ -93,30 +88,27 @@ class LoginPageState extends State<LoginPage> {
                           icon: Icon(
                             _isObscured
                                 ? Icons.visibility
-                                : Icons.visibility_off, // Toggle icon
+                                : Icons.visibility_off,
                             size: 18,
                           ),
                           onPressed: () {
                             setState(() {
-                              _isObscured = !_isObscured; // Toggle visibility
+                              _isObscured = !_isObscured;
                             });
                           },
                         ),
-                        labelText: 'Password', // Label for the text field
-                        hintText:
-                            'Enter Your Password ...', // Hint text inside the text field
-                        border: const OutlineInputBorder(), // Outline border
+                        labelText: 'Password',
+                        hintText: 'Enter Your Password ...',
+                        border: const OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6.0),
                           borderSide: const BorderSide(
-                              color: AppColors.primaryColor,
-                              width: 2.0), // Border when focused
+                              color: AppColors.primaryColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(3.0),
                           borderSide: const BorderSide(
-                              color: AppColors.secondaryColor,
-                              width: 1.0), // Border when enabled
+                              color: AppColors.secondaryColor, width: 1.0),
                         ),
                       ),
                     ),
@@ -134,8 +126,7 @@ class LoginPageState extends State<LoginPage> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              AppColors.primaryColor, // Custom green
+                          backgroundColor: AppColors.primaryColor,
                           foregroundColor: AppColors.textSecondary,
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           shape: RoundedRectangleBorder(
@@ -153,10 +144,12 @@ class LoginPageState extends State<LoginPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('New to FineDrop? '), // Regular text
+                        const Text(
+                          'New to FineDrop? ',
+                          style: TextStyle(fontSize: 15),
+                        ),
                         GestureDetector(
                           onTap: () {
-                            // Navigate to the Sign In page
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -166,8 +159,8 @@ class LoginPageState extends State<LoginPage> {
                           child: const Text(
                             'Sign Up',
                             style: TextStyle(
-                              color: Colors
-                                  .blue, // Change color to indicate it's clickable
+                              color: Colors.blue,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -179,6 +172,8 @@ class LoginPageState extends State<LoginPage> {
               ),
             ],
           ),
-        )));
+        ),
+      )),
+    );
   }
 }

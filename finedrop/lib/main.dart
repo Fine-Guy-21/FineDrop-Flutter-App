@@ -1,5 +1,4 @@
 import 'package:finedrop/Pages/loginpage.dart';
-import 'package:finedrop/Pages/signuppage.dart';
 import 'package:finedrop/model/user.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,14 +57,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToHome() async {
-    // Simulate a loading delay (or perform initialization tasks)
-    await Future.delayed(
-        const Duration(seconds: 10)); // Adjust duration if needed
-    // Navigate to the main scaffold
+    await Future.delayed(const Duration(seconds: 10));
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context,
-      MaterialPageRoute(builder: (context) => const SignUpPage()),
+      MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }
 
@@ -81,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 40),
             const CircularProgressIndicator(
               color: AppColors.primaryColor,
-            ), // Loading animation
+            ),
             const SizedBox(height: 20),
             const Text(
               "Loading... Please wait",
@@ -105,7 +101,6 @@ class AuthPage extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return const MySccaffold();
-            // return const HomePage();
           } else {
             return const LoginPage();
           }

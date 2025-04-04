@@ -101,9 +101,7 @@ class _AirdropPageState extends State<AirdropPage> {
 
                   // Connect TON Wallet Button
                   ElevatedButton(
-                    onPressed: () {
-                      debugPrint("Connect TON Wallet clicked!");
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primaryColor, // Custom green
                       foregroundColor: AppColors.textSecondary,
